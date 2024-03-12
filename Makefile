@@ -1,5 +1,6 @@
 TARGET = main
-OBJS = main.o sources/internal/callbacks.o sources/internal/pspvram.o sources/internal/pspgraphics.o
+OBJS = main.o sources/internal/callbacks.o
+#OBJS = main.o sources/internal/callbacks.o sources/internal/pspvram.o sources/internal/pspgraphics.o
 
 INCDIR = sources/external/
 CFLAGS = -Wall
