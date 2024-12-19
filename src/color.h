@@ -1,0 +1,14 @@
+#ifndef color_h
+#define color_h
+
+// ABGR
+#define RAW_BLUE 0x0FFFF0000
+#define RAW_RED 0xFF0000FF
+#define RAW_GREEN 0x0FF00FF00
+#define RAW_WHITE 0x0FFFFFFFF
+#define RAW_BLACK 0xFF0000000
+#define RAW_PINK 0xFFFF00FF
+#define RAW_DARK_GREEN 0xFF408020
+#define RAW_DARK_RED 0xFF102080
+
+#endif
