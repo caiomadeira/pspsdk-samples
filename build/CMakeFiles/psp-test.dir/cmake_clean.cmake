@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/psp-test.dir/src/graphic.c.obj.d"
   "CMakeFiles/psp-test.dir/src/main.c.obj"
   "CMakeFiles/psp-test.dir/src/main.c.obj.d"
+  "CMakeFiles/psp-test.dir/src/menu.c.obj"
+  "CMakeFiles/psp-test.dir/src/menu.c.obj.d"
   "psp-test"
   "psp-test.pdb"
 )

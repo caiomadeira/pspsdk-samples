@@ -16,11 +16,16 @@
 #include <math.h>
 #include <stdbool.h>
 
+#define readButtonState sceCtrlReadBufferPositive
+#define readButtonStateContinuous sceCtrlPeekBufferPositive
+// #define SceCtrlData PSPControl
+
 // Declara running como extern p/ evitar multilas definicoes
 extern int running;
 
 int exit_callback(int arg1, int arg2, void *common);
 int callback_thread(SceSize args, void *argp);
-int setup_callbacks(void);
+int setupCallbacks(void);
+SceCtrlData initControl(void);
 
 #endif 

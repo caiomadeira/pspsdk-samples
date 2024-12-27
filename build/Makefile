@@ -251,6 +251,30 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/menu.obj: src/menu.c.obj
+.PHONY : src/menu.obj
+
+# target to build an object file
+src/menu.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/menu.c.obj
+.PHONY : src/menu.c.obj
+
+src/menu.i: src/menu.c.i
+.PHONY : src/menu.i
+
+# target to preprocess a source file
+src/menu.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/menu.c.i
+.PHONY : src/menu.c.i
+
+src/menu.s: src/menu.c.s
+.PHONY : src/menu.s
+
+# target to generate assembly for a file
+src/menu.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/menu.c.s
+.PHONY : src/menu.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -274,6 +298,9 @@ help:
 	@echo "... src/main.obj"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/menu.obj"
+	@echo "... src/menu.i"
+	@echo "... src/menu.s"
 .PHONY : help
 
 

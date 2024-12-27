@@ -1,5 +1,0 @@
-/home/caiomadeira/Desktop/psp-test/CMakeFiles/generate_font_c.dir
-/home/caiomadeira/Desktop/psp-test/CMakeFiles/generate_logo_o.dir
-/home/caiomadeira/Desktop/psp-test/CMakeFiles/psp-test.dir
-/home/caiomadeira/Desktop/psp-test/CMakeFiles/edit_cache.dir
-/home/caiomadeira/Desktop/psp-test/CMakeFiles/rebuild_cache.dir

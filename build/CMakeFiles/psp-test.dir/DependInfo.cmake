@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/caiomadeira/Desktop/pspsdk-samples/src/font.c" "CMakeFiles/psp-test.dir/src/font.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/font.c.obj.d"
   "/home/caiomadeira/Desktop/pspsdk-samples/src/graphic.c" "CMakeFiles/psp-test.dir/src/graphic.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/graphic.c.obj.d"
   "/home/caiomadeira/Desktop/pspsdk-samples/src/main.c" "CMakeFiles/psp-test.dir/src/main.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/main.c.obj.d"
+  "/home/caiomadeira/Desktop/pspsdk-samples/src/menu.c" "CMakeFiles/psp-test.dir/src/menu.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/menu.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

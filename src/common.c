@@ -14,10 +14,18 @@ int callback_thread(SceSize args, void *argp) {
     return 0;
 }
 
-int setup_callbacks(void) 
+int setupCallbacks(void) 
 {
     int thid = sceKernelCreateThread("update_thread", callback_thread, 0x11, 0xFA0, 0, 0);
     if(thid >= 0)
         sceKernelStartThread(thid, 0, 0);
     return thid;
+}
+
+SceCtrlData initControl()
+{
+    SceCtrlData pad;
+    sceCtrlSetSamplingCycle(0);
+	sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
+    return pad;
 }

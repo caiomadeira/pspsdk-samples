@@ -47,6 +47,7 @@ void endGu();
 // Inicia o desenho de um frame
 void startFrame();
 void startFrameCube(u32 backgroundColor);
+void startFrameCubeNoBackground(void);
 // Finaliza e apresenta o frame
 void endFrame();
 

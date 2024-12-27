@@ -28,6 +28,7 @@ add_executable(${PROJECT_NAME}
     src/common.c
     src/graphic.c
     src/font.c
+    src/menu.c
     src/logo.o  # Adiciona logo.o como parte do executável
 )
 

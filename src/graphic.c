@@ -172,6 +172,13 @@ void startFrameCube(u32 backgroundColor)
 	sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
 }
 
+void startFrameCubeNoBackground()
+{
+    sceGuStart(GU_DIRECT, list);
+    sceGuClearDepth(0); 
+	sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
+}
+
 void endFrame()
 {
     sceGuFinish();
