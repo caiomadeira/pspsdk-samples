@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/caiomadeira/Desktop/psp-test/src/font.c"
-  "/home/caiomadeira/Desktop/psp-test/src/logo.o"
+  "/home/caiomadeira/Desktop/pspsdk-samples/src/font.c"
+  "/home/caiomadeira/Desktop/pspsdk-samples/src/logo.o"
   "CMakeFiles/psp-test.dir/src/common.c.obj"
   "CMakeFiles/psp-test.dir/src/common.c.obj.d"
   "CMakeFiles/psp-test.dir/src/font.c.obj"

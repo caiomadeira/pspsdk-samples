@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/caiomadeira/Desktop/psp-test/src/font.c"
+  "/home/caiomadeira/Desktop/pspsdk-samples/src/font.c"
   "CMakeFiles/generate_font_c"
 )
 

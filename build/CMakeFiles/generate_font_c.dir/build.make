@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/caiomadeira/Desktop/psp-test
+CMAKE_SOURCE_DIR = /home/caiomadeira/Desktop/pspsdk-samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/caiomadeira/Desktop/psp-test/build
+CMAKE_BINARY_DIR = /home/caiomadeira/Desktop/pspsdk-samples/build
 
 # Utility rule file for generate_font_c.
 
@@ -66,14 +66,14 @@ include CMakeFiles/generate_font_c.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/generate_font_c.dir/progress.make
 
-CMakeFiles/generate_font_c: /home/caiomadeira/Desktop/psp-test/src/font.c
+CMakeFiles/generate_font_c: /home/caiomadeira/Desktop/pspsdk-samples/src/font.c
 
-/home/caiomadeira/Desktop/psp-test/src/font.c: /home/caiomadeira/Desktop/psp-test/assets/font.raw
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/caiomadeira/Desktop/psp-test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating font.c from font.raw"
-	bin2c /home/caiomadeira/Desktop/psp-test/assets/font.raw /home/caiomadeira/Desktop/psp-test/src/font.c font
+/home/caiomadeira/Desktop/pspsdk-samples/src/font.c: /home/caiomadeira/Desktop/pspsdk-samples/assets/font.raw
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating font.c from font.raw"
+	bin2c /home/caiomadeira/Desktop/pspsdk-samples/assets/font.raw /home/caiomadeira/Desktop/pspsdk-samples/src/font.c font
 
 generate_font_c: CMakeFiles/generate_font_c
-generate_font_c: /home/caiomadeira/Desktop/psp-test/src/font.c
+generate_font_c: /home/caiomadeira/Desktop/pspsdk-samples/src/font.c
 generate_font_c: CMakeFiles/generate_font_c.dir/build.make
 .PHONY : generate_font_c
 
@@ -86,6 +86,6 @@ CMakeFiles/generate_font_c.dir/clean:
 .PHONY : CMakeFiles/generate_font_c.dir/clean
 
 CMakeFiles/generate_font_c.dir/depend:
-	cd /home/caiomadeira/Desktop/psp-test/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/caiomadeira/Desktop/psp-test /home/caiomadeira/Desktop/psp-test /home/caiomadeira/Desktop/psp-test/build /home/caiomadeira/Desktop/psp-test/build /home/caiomadeira/Desktop/psp-test/build/CMakeFiles/generate_font_c.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/caiomadeira/Desktop/pspsdk-samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/caiomadeira/Desktop/pspsdk-samples /home/caiomadeira/Desktop/pspsdk-samples /home/caiomadeira/Desktop/pspsdk-samples/build /home/caiomadeira/Desktop/pspsdk-samples/build /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles/generate_font_c.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/generate_font_c.dir/depend
 

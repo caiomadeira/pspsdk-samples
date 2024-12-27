@@ -1,4 +1,4 @@
-# Install script for directory: /home/caiomadeira/Desktop/psp-test
+# Install script for directory: /home/caiomadeira/Desktop/pspsdk-samples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -52,6 +52,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/home/caiomadeira/Desktop/psp-test/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/caiomadeira/Desktop/pspsdk-samples/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

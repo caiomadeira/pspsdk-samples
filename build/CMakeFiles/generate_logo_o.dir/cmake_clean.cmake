@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "/home/caiomadeira/Desktop/psp-test/src/logo.o"
+  "/home/caiomadeira/Desktop/pspsdk-samples/src/logo.o"
   "CMakeFiles/generate_logo_o"
 )
 

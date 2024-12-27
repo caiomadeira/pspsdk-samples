@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/caiomadeira/Desktop/psp-test
+CMAKE_SOURCE_DIR = /home/caiomadeira/Desktop/pspsdk-samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/caiomadeira/Desktop/psp-test/build
+CMAKE_BINARY_DIR = /home/caiomadeira/Desktop/pspsdk-samples/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/psp-test/build/CMakeFiles /home/caiomadeira/Desktop/psp-test/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles /home/caiomadeira/Desktop/pspsdk-samples/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/psp-test/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

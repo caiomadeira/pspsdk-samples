@@ -1,5 +1,5 @@
 # Hashes of file build rules.
-d6d8cd17acdfa6e3becbd52f4f21ea4f /home/caiomadeira/Desktop/psp-test/src/font.c
-04260e5f2090062171ca7bb180b10156 /home/caiomadeira/Desktop/psp-test/src/logo.o
-897ebde3ce085efacd261a98e78ee2bb CMakeFiles/generate_font_c
-897ebde3ce085efacd261a98e78ee2bb CMakeFiles/generate_logo_o
+832bb4cc51cea603a4f1764b9f689d06 /home/caiomadeira/Desktop/pspsdk-samples/src/font.c
+a3cd41ed0779847ac31bf9f785ea5b2c /home/caiomadeira/Desktop/pspsdk-samples/src/logo.o
+00dedf150778693477c3fe44a855467e CMakeFiles/generate_font_c
+00dedf150778693477c3fe44a855467e CMakeFiles/generate_logo_o

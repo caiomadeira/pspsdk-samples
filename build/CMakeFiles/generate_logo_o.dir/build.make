@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/caiomadeira/Desktop/psp-test
+CMAKE_SOURCE_DIR = /home/caiomadeira/Desktop/pspsdk-samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/caiomadeira/Desktop/psp-test/build
+CMAKE_BINARY_DIR = /home/caiomadeira/Desktop/pspsdk-samples/build
 
 # Utility rule file for generate_logo_o.
 
@@ -66,14 +66,14 @@ include CMakeFiles/generate_logo_o.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/generate_logo_o.dir/progress.make
 
-CMakeFiles/generate_logo_o: /home/caiomadeira/Desktop/psp-test/src/logo.o
+CMakeFiles/generate_logo_o: /home/caiomadeira/Desktop/pspsdk-samples/src/logo.o
 
-/home/caiomadeira/Desktop/psp-test/src/logo.o: /home/caiomadeira/Desktop/psp-test/assets/logo.raw
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/caiomadeira/Desktop/psp-test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating logo.o from logo.raw"
-	bin2o -i /home/caiomadeira/Desktop/psp-test/assets/logo.raw /home/caiomadeira/Desktop/psp-test/src/logo.o logo
+/home/caiomadeira/Desktop/pspsdk-samples/src/logo.o: /home/caiomadeira/Desktop/pspsdk-samples/assets/logo.raw
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating logo.o from logo.raw"
+	bin2o -i /home/caiomadeira/Desktop/pspsdk-samples/assets/logo.raw /home/caiomadeira/Desktop/pspsdk-samples/src/logo.o logo
 
 generate_logo_o: CMakeFiles/generate_logo_o
-generate_logo_o: /home/caiomadeira/Desktop/psp-test/src/logo.o
+generate_logo_o: /home/caiomadeira/Desktop/pspsdk-samples/src/logo.o
 generate_logo_o: CMakeFiles/generate_logo_o.dir/build.make
 .PHONY : generate_logo_o
 
@@ -86,6 +86,6 @@ CMakeFiles/generate_logo_o.dir/clean:
 .PHONY : CMakeFiles/generate_logo_o.dir/clean
 
 CMakeFiles/generate_logo_o.dir/depend:
-	cd /home/caiomadeira/Desktop/psp-test/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/caiomadeira/Desktop/psp-test /home/caiomadeira/Desktop/psp-test /home/caiomadeira/Desktop/psp-test/build /home/caiomadeira/Desktop/psp-test/build /home/caiomadeira/Desktop/psp-test/build/CMakeFiles/generate_logo_o.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/caiomadeira/Desktop/pspsdk-samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/caiomadeira/Desktop/pspsdk-samples /home/caiomadeira/Desktop/pspsdk-samples /home/caiomadeira/Desktop/pspsdk-samples/build /home/caiomadeira/Desktop/pspsdk-samples/build /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles/generate_logo_o.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/generate_logo_o.dir/depend
 

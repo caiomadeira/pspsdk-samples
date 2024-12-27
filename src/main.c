@@ -104,20 +104,6 @@ void mainMenuScreen(ScreenState* currentScreen, SceCtrlData* pad, int* oldButton
     }
 }
 
-void guInit() {
-  sceGuInit();
-  sceGuStart(GU_DIRECT, list);
-  sceGuDrawBuffer(GU_PSM_8888, (void*)0x0, BUF_WIDTH);
-  sceGuDispBuffer(SCR_WIDTH, SCR_HEIGHT, (void*)0x88000, BUF_WIDTH);
-  sceGuDepthBuffer((void*)0x110000, BUF_WIDTH);
-  sceGuClearColor(0xFF504040);
-  sceGuDisable(GU_DEPTH_TEST);
-  sceGuDisable(GU_SCISSOR_TEST);
-  sceGuDisplay(GU_TRUE);
-  sceGuFinish();
-  sceGuSync(0,0);
-}
-
 int main()
 {
 
@@ -127,7 +113,7 @@ int main()
     int oldButtons = 0; // Debounce
     ScreenState currentScreen = SCREEN_MENU;
 
-    initGuForFont();
+    //initGuForFont();
 
     // // Setup frame buffers
     void* frameBuffer0 = guGetStaticVramBuffer(BUF_WIDTH,SCR_HEIGHT,GU_PSM_8888);
@@ -152,9 +138,31 @@ int main()
             }
 
             case SCREEN_NEW_GAME: {
-                endFrame();
-                configureGuForCube();
-                newGameScreen(&currentScreen, &pad, &oldButtons, frameBuffer0, frameBuffer1, depthBuffer);
+                // endFrame();
+                // configureGuForCube();
+                // newGameScreen(&currentScreen, &pad, &oldButtons, frameBuffer0, frameBuffer1, depthBuffer);
+                startFrameCube(RAW_BLUE);
+                renderCube(posX, posY, posZ);
+                if (pad.Buttons & PSP_CTRL_RIGHT)
+                {
+                    posX++;
+                    //sceGumTranslate(&pos);
+                }
+                if (pad.Buttons & PSP_CTRL_LEFT)
+                {
+                    posX--;
+                }
+                if (pad.Buttons & PSP_CTRL_UP)
+                {
+                    posZ--;
+                }
+                if (pad.Buttons & PSP_CTRL_DOWN)
+                {
+                    posZ++;
+                }
+                if ((pad.Buttons & PSP_CTRL_CIRCLE) && !(oldButtons & PSP_CTRL_CIRCLE)) {
+                    currentScreen = SCREEN_MENU;  // Volta ao menu
+                }
                 break;
             }
 
