@@ -18,6 +18,7 @@ add_custom_command(
     COMMENT "Generating logo.o from logo.raw"
 )
 
+
 # Adiciona alvos intermediários para a geração de font.c e logo.o
 add_custom_target(generate_font_c DEPENDS ${CMAKE_SOURCE_DIR}/src/font.c)
 add_custom_target(generate_logo_o DEPENDS ${CMAKE_SOURCE_DIR}/src/logo.o)
@@ -29,6 +30,7 @@ add_executable(${PROJECT_NAME}
     src/graphic.c
     src/font.c
     src/menu.c
+    src/complexgraphics.c
     src/logo.o  # Adiciona logo.o como parte do executável
 )
 

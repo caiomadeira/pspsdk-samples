@@ -179,6 +179,30 @@ src/common.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/common.c.s
 .PHONY : src/common.c.s
 
+src/complexgraphics.obj: src/complexgraphics.c.obj
+.PHONY : src/complexgraphics.obj
+
+# target to build an object file
+src/complexgraphics.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/complexgraphics.c.obj
+.PHONY : src/complexgraphics.c.obj
+
+src/complexgraphics.i: src/complexgraphics.c.i
+.PHONY : src/complexgraphics.i
+
+# target to preprocess a source file
+src/complexgraphics.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/complexgraphics.c.i
+.PHONY : src/complexgraphics.c.i
+
+src/complexgraphics.s: src/complexgraphics.c.s
+.PHONY : src/complexgraphics.s
+
+# target to generate assembly for a file
+src/complexgraphics.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/complexgraphics.c.s
+.PHONY : src/complexgraphics.c.s
+
 src/font.obj: src/font.c.obj
 .PHONY : src/font.obj
 
@@ -289,6 +313,9 @@ help:
 	@echo "... src/common.obj"
 	@echo "... src/common.i"
 	@echo "... src/common.s"
+	@echo "... src/complexgraphics.obj"
+	@echo "... src/complexgraphics.i"
+	@echo "... src/complexgraphics.s"
 	@echo "... src/font.obj"
 	@echo "... src/font.i"
 	@echo "... src/font.s"

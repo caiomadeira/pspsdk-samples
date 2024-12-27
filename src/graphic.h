@@ -17,7 +17,7 @@
 typedef struct {
     unsigned short u, v;
     short x, y, z;
-	u32 color;
+	//u32 color;
 } Vertex;
 
 // CUBE
@@ -31,10 +31,12 @@ struct Vertex3D
 	float x,y,z;
 };
 
-extern struct Vertex3D __attribute__((aligned(16))) vertices[12*3];
+extern struct Vertex3D __attribute__((aligned(16))) cubeVertices[12*3];
+extern struct Vertex3D __attribute__((aligned(16))) planeVertices[2*3];
 
 // FUNCTIONS
-void renderCube(float posX, float posY, float posZ);
+void renderCube(float posX, float posY, float posZ, struct Vertex3D* vertices);
+void renderPlane(float posX, float posY, float posZ);
 void configureGuForMenu();
 void configureGuForCube();
 
@@ -48,6 +50,9 @@ void endGu();
 void startFrame();
 void startFrameCube(u32 backgroundColor);
 void startFrameCubeNoBackground(void);
+void startFramePlane(u32 backgroundColor);
+void startFrameCubeAndPlane();
+void renderScene(float posX, float posY, float posZ);
 // Finaliza e apresenta o frame
 void endFrame();
 

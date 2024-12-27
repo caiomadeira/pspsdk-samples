@@ -4,8 +4,23 @@
 char list[0x20000] __attribute__((aligned(64)));
 static unsigned int __attribute__((aligned(16))) listFont[262144];
 static unsigned int __attribute__((aligned(16))) listCube[262144];
+static unsigned int __attribute__((aligned(16))) listPlane[262144];
+static unsigned int __attribute__((aligned(16))) listPlaneCube[262144+262144];
 
-struct Vertex3D __attribute__((aligned(16))) vertices[12*3] =
+struct Vertex3D __attribute__((aligned(16))) planeVertices[2*3] =
+{
+    // Triângulo 1
+    {0.0f, 0.0f, 0xff7f0000, -30.0f, -5.0f, -12.0f}, // Inferior esquerdo
+    {1.0f, 0.0f, 0xff7f0000,  30.0f, -5.0f, -12.0f}, // Inferior direito
+    {1.0f, 1.0f, 0xff7f0000,  30.0f,  5.0f, -12.0f}, // Superior direito
+    // u    v     color       x       y       z
+    // Triângulo 2
+    {0.0f, 0.0f, 0xff7f0000, -30.0f, -5.0f, -12.0f}, // Inferior esquerdo
+    {1.0f, 1.0f, 0xff7f0000,  30.0f,  5.0f, -12.0f}, // Superior direito
+    {0.0f, 1.0f, 0xff7f0000, -30.0f,  5.0f, -12.0f}, // Superior esquerdo
+};
+
+struct Vertex3D __attribute__((aligned(16))) playerVertices[12*3] =
 {
 	{0, 0, 0xff7f0000,-1,-1, 1}, // 0
 	{1, 0, 0xff7f0000,-1, 1, 1}, // 4
@@ -155,6 +170,14 @@ void endGu()
     sceGuTerm();
 }
 
+void startFrameCubeAndPlane()
+{
+    sceGuStart(GU_DIRECT, listPlaneCube);
+    sceGuClearColor(RAW_CLEAR_GRAY);
+    sceGuClearDepth(0); 
+	sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
+}
+
 void startFrame(u32 backgroundColor)
 {
     sceGuStart(GU_DIRECT, list);
@@ -165,12 +188,22 @@ void startFrame(u32 backgroundColor)
 
 void startFrameCube(u32 backgroundColor)
 {
-    sceGuStart(GU_DIRECT, list);
+    sceGuStart(GU_DIRECT, listCube);
     if (backgroundColor != 0)
         sceGuClearColor(backgroundColor); // White background
     sceGuClearDepth(0); 
 	sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
 }
+
+void startFramePlane(u32 backgroundColor)
+{
+    sceGuStart(GU_DIRECT, listPlane);
+    if (backgroundColor != 0)
+        sceGuClearColor(backgroundColor); // White background
+    sceGuClearDepth(0); 
+	sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
+}
+
 
 void startFrameCubeNoBackground()
 {
@@ -361,17 +394,21 @@ float flatCube =  16.0f/9.0f;
 float verticeProximityScreen = 0.5f;
     
 
-void renderCube(float posX, float posY, float posZ)
+void renderCube(float posX, float posY, float posZ, struct Vertex3D* vertices)
 {
-		sceGuClearDepth(0);
-		sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
+		// sceGuClearDepth(0);
+		// sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
 
-		sceGumMatrixMode(GU_PROJECTION);
-		sceGumLoadIdentity();
-		// cube perspective and pos and rot
-		sceGumPerspective(ZDepth, flatCube, verticeProximityScreen, 1000.0f);
-		sceGumMatrixMode(GU_VIEW);
-		sceGumLoadIdentity();
+		// sceGumMatrixMode(GU_PROJECTION);
+		// sceGumLoadIdentity();
+		// // cube perspective and pos and rot
+		// sceGumPerspective(ZDepth, flatCube, verticeProximityScreen, 1000.0f);
+		
+        // // camera view
+        // sceGumMatrixMode(GU_VIEW);
+		// sceGumLoadIdentity();
+
+        // model
 		sceGumMatrixMode(GU_MODEL);
 		sceGumLoadIdentity();
 		{
@@ -380,19 +417,77 @@ void renderCube(float posX, float posY, float posZ)
 			sceGumTranslate(&pos);
 		}
 
-		// // setup texture and draw cube
+		// setup texture and draw cube
 		sceGuTexMode(GU_PSM_5650, 0,0,0);
 		sceGuTexImage(0,textureImageWidth,textureImageHeight,textureImageStride,logo_start);
 		sceGuTexFunc(GU_TFX_ADD,GU_TCC_RGB); // Define como a textura será combinada com a cor base dos vértices.
 		sceGuTexEnvColor(0xffff00); // sinceramente, nao vi mt diferenca
-		sceGuTexFilter(GU_LINEAR,GU_LINEAR);
+		
+        // set filters
+        sceGuTexFilter(GU_LINEAR,GU_LINEAR);
 		sceGuTexScale(1.0f,1.0f);
 		sceGuTexOffset(0.0f,0.0f);
 		sceGuAmbientColor(0xffffffff);
-		sceGumDrawArray(GU_TRIANGLES,GU_TEXTURE_32BITF|GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D,12*3,0,vertices);
-		sceGuFinish();
-		sceGuSync(0,0);
+		sceGumDrawArray(GU_TRIANGLES,GU_TEXTURE_32BITF|GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D,12*3,0, vertices);
+		// sceGuFinish();
+		// sceGuSync(0,0);
 }
+
+void renderPlane(float posX, float posY, float posZ)
+{
+    // essas funcoes limpam os buffers
+    // sceGuClearDepth(0);
+    // sceGuClear(GU_COLOR_BUFFER_BIT|GU_DEPTH_BUFFER_BIT);
+
+    // setup matrices for cube
+    //Projection
+    // sceGumMatrixMode(GU_PROJECTION);
+    // sceGumLoadIdentity();
+    // sceGumPerspective(75.0f, 16.0f / 9.0f, 0.5, 1000.f);
+
+    // // camera view
+    // sceGumMatrixMode(GU_VIEW);
+    // sceGumLoadIdentity();
+
+    sceGumMatrixMode(GU_MODEL);
+    sceGumLoadIdentity();
+    ScePspFVector3 pos = { posX, posY, posZ };
+    sceGumTranslate(&pos);
+    
+    sceGuDisable(GU_TEXTURE_2D); // Desabilita o uso de texturas
+
+    sceGuColor(0xffffffff);
+    sceGuAmbientColor(0xffffffff);
+    sceGumDrawArray(GU_TRIANGLES,GU_TEXTURE_32BITF| GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D,2*3,0, planeVertices);
+   
+    // sceGuFinish();
+    // sceGuSync(0,0);
+}
+
+void renderScene(float posX, float posY, float posZ)
+{
+    // Limpar os buffers
+    sceGuClearDepth(0);
+    sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
+
+    // Configuração da projeção (apenas uma vez por cena)
+    sceGumMatrixMode(GU_PROJECTION);
+    sceGumLoadIdentity();
+    sceGumPerspective(75.0f, 16.0f / 9.0f, 0.5, 1000.f);
+
+    // Configuração da câmera (apenas uma vez por cena)
+    sceGumMatrixMode(GU_VIEW);
+    sceGumLoadIdentity();
+
+    // Renderizar os objetos
+    renderPlane(0.0f, 0.0f, -20.0f); // Exemplo de posição do plano
+    renderCube(posX, posY, posZ, playerVertices); // Exemplo de posição do cubo
+
+    // Finalizar
+    sceGuFinish();
+    sceGuSync(0, 0);
+}
+
 
 int calculateTextWidth(const char* text, int fontwidth) {
     int width = 0;
@@ -400,35 +495,4 @@ int calculateTextWidth(const char* text, int fontwidth) {
         width += fontwidthtab[(unsigned char)*text++];
     }
     return width;
-}
-
-void configureGuForMenu() {
-    sceGuStart(GU_DIRECT, listCube);
-
-    sceGuDisable(GU_DEPTH_TEST);
-    sceGuEnable(GU_BLEND);
-    sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
-    sceGuEnable(GU_TEXTURE_2D);
-    sceGuTexMode(GU_PSM_8888, 0, 0, 0);
-    sceGuTexImage(0, 256, 128, 256, font);
-    sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
-    sceGuTexOffset(0.0f, 0.0f);
-    sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
-
-    sceGuFinish();
-    sceGuSync(0, 0);
-}
-
-void configureGuForCube() {
-    sceGuStart(GU_DIRECT, list);
-
-    sceGuEnable(GU_DEPTH_TEST);
-    sceGuFrontFace(GU_CW);
-    sceGuShadeModel(GU_SMOOTH);
-    sceGuEnable(GU_CULL_FACE);
-    sceGuEnable(GU_TEXTURE_2D);
-    sceGuEnable(GU_CLIP_PLANES);
-
-    sceGuFinish();
-    sceGuSync(0, 0);
 }

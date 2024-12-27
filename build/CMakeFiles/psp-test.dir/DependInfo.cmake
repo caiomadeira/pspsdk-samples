@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/caiomadeira/Desktop/pspsdk-samples/src/common.c" "CMakeFiles/psp-test.dir/src/common.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/common.c.obj.d"
+  "/home/caiomadeira/Desktop/pspsdk-samples/src/complexgraphics.c" "CMakeFiles/psp-test.dir/src/complexgraphics.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/complexgraphics.c.obj.d"
   "/home/caiomadeira/Desktop/pspsdk-samples/src/font.c" "CMakeFiles/psp-test.dir/src/font.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/font.c.obj.d"
   "/home/caiomadeira/Desktop/pspsdk-samples/src/graphic.c" "CMakeFiles/psp-test.dir/src/graphic.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/graphic.c.obj.d"
   "/home/caiomadeira/Desktop/pspsdk-samples/src/main.c" "CMakeFiles/psp-test.dir/src/main.c.obj" "gcc" "CMakeFiles/psp-test.dir/src/main.c.obj.d"

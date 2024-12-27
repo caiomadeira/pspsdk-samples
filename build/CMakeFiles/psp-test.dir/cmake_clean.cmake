@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "/home/caiomadeira/Desktop/pspsdk-samples/src/logo.o"
   "CMakeFiles/psp-test.dir/src/common.c.obj"
   "CMakeFiles/psp-test.dir/src/common.c.obj.d"
+  "CMakeFiles/psp-test.dir/src/complexgraphics.c.obj"
+  "CMakeFiles/psp-test.dir/src/complexgraphics.c.obj.d"
   "CMakeFiles/psp-test.dir/src/font.c.obj"
   "CMakeFiles/psp-test.dir/src/font.c.obj.d"
   "CMakeFiles/psp-test.dir/src/graphic.c.obj"

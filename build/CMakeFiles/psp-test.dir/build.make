@@ -147,13 +147,28 @@ CMakeFiles/psp-test.dir/src/menu.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/psp-test.dir/src/menu.c.s"
 	/home/caiomadeira/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/caiomadeira/Desktop/pspsdk-samples/src/menu.c -o CMakeFiles/psp-test.dir/src/menu.c.s
 
+CMakeFiles/psp-test.dir/src/complexgraphics.c.obj: CMakeFiles/psp-test.dir/flags.make
+CMakeFiles/psp-test.dir/src/complexgraphics.c.obj: /home/caiomadeira/Desktop/pspsdk-samples/src/complexgraphics.c
+CMakeFiles/psp-test.dir/src/complexgraphics.c.obj: CMakeFiles/psp-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/psp-test.dir/src/complexgraphics.c.obj"
+	/home/caiomadeira/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/psp-test.dir/src/complexgraphics.c.obj -MF CMakeFiles/psp-test.dir/src/complexgraphics.c.obj.d -o CMakeFiles/psp-test.dir/src/complexgraphics.c.obj -c /home/caiomadeira/Desktop/pspsdk-samples/src/complexgraphics.c
+
+CMakeFiles/psp-test.dir/src/complexgraphics.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/psp-test.dir/src/complexgraphics.c.i"
+	/home/caiomadeira/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/caiomadeira/Desktop/pspsdk-samples/src/complexgraphics.c > CMakeFiles/psp-test.dir/src/complexgraphics.c.i
+
+CMakeFiles/psp-test.dir/src/complexgraphics.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/psp-test.dir/src/complexgraphics.c.s"
+	/home/caiomadeira/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/caiomadeira/Desktop/pspsdk-samples/src/complexgraphics.c -o CMakeFiles/psp-test.dir/src/complexgraphics.c.s
+
 # Object files for target psp-test
 psp__test_OBJECTS = \
 "CMakeFiles/psp-test.dir/src/main.c.obj" \
 "CMakeFiles/psp-test.dir/src/common.c.obj" \
 "CMakeFiles/psp-test.dir/src/graphic.c.obj" \
 "CMakeFiles/psp-test.dir/src/font.c.obj" \
-"CMakeFiles/psp-test.dir/src/menu.c.obj"
+"CMakeFiles/psp-test.dir/src/menu.c.obj" \
+"CMakeFiles/psp-test.dir/src/complexgraphics.c.obj"
 
 # External object files for target psp-test
 psp__test_EXTERNAL_OBJECTS = \
@@ -164,10 +179,11 @@ psp-test: CMakeFiles/psp-test.dir/src/common.c.obj
 psp-test: CMakeFiles/psp-test.dir/src/graphic.c.obj
 psp-test: CMakeFiles/psp-test.dir/src/font.c.obj
 psp-test: CMakeFiles/psp-test.dir/src/menu.c.obj
+psp-test: CMakeFiles/psp-test.dir/src/complexgraphics.c.obj
 psp-test: /home/caiomadeira/Desktop/pspsdk-samples/src/logo.o
 psp-test: CMakeFiles/psp-test.dir/build.make
 psp-test: CMakeFiles/psp-test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable psp-test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable psp-test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/psp-test.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -E cmake_echo_color --cyan Not\ stripping\ binary\ for\ target\ psp-test,\ build\ type\ is\ .
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Calling psp-fixup-imports for target psp-test"
