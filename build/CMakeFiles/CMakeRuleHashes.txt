@@ -1,5 +1,7 @@
 # Hashes of file build rules.
+95db214f4b216bfd850c3534d5daa351 /home/caiomadeira/Desktop/pspsdk-samples/src/face.o
 832bb4cc51cea603a4f1764b9f689d06 /home/caiomadeira/Desktop/pspsdk-samples/src/font.c
 a3cd41ed0779847ac31bf9f785ea5b2c /home/caiomadeira/Desktop/pspsdk-samples/src/logo.o
+00dedf150778693477c3fe44a855467e CMakeFiles/generate_face_o
 00dedf150778693477c3fe44a855467e CMakeFiles/generate_font_c
 00dedf150778693477c3fe44a855467e CMakeFiles/generate_logo_o

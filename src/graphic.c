@@ -20,6 +20,57 @@ struct Vertex3D __attribute__((aligned(16))) planeVertices[2*3] =
     {0.0f, 1.0f, 0xff7f0000, -30.0f,  5.0f, -12.0f}, // Superior esquerdo
 };
 
+struct Vertex3D __attribute__((aligned(16))) buildingModel[12*3] =
+{
+	{0, 0, RAW_CLEAR_GRAY,-0.1, -0.2,  0.1}, // 0
+	{1, 0, RAW_CLEAR_GRAY,-0.1,  0.2,  0.1}, // 4
+	{1, 1, RAW_CLEAR_GRAY, 0.1,  0.2,  0.1}, // 5
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1, -0.2,  0.1}, // 0
+	{1, 1, RAW_CLEAR_GRAY, 0.1,  0.2,  0.1}, // 5
+	{0, 1, RAW_CLEAR_GRAY, 0.1, -0.2,  0.1}, // 1
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1, -0.2, -0.1}, // 3
+	{1, 0, RAW_CLEAR_GRAY, 0.1, -0.2, -0.1}, // 2
+	{1, 1, RAW_CLEAR_GRAY, 0.1,  0.2, -0.1}, // 6
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1, -0.2, -0.1}, // 3
+	{1, 1, RAW_CLEAR_GRAY, 0.1,  0.2, -0.1}, // 6
+	{0, 1, RAW_CLEAR_GRAY,-0.1,  0.2, -0.1}, // 7
+
+	{0, 0, RAW_CLEAR_GRAY, 0.1, -0.2, -0.1}, // 0
+	{1, 0, RAW_CLEAR_GRAY, 0.1, -0.2,  0.1}, // 3
+	{1, 1, RAW_CLEAR_GRAY, 0.1,  0.2,  0.1}, // 7
+
+	{0, 0, RAW_CLEAR_GRAY, 0.1, -0.2, -0.1}, // 0
+	{1, 1, RAW_CLEAR_GRAY, 0.1,  0.2,  0.1}, // 7
+	{0, 1, RAW_CLEAR_GRAY, 0.1,  0.2, -0.1}, // 4
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1, -0.2, -0.1}, // 0
+	{1, 0, RAW_CLEAR_GRAY,-0.1,  0.2, -0.1}, // 3
+	{1, 1, RAW_CLEAR_GRAY,-0.1,  0.2,  0.1}, // 7
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1, -0.2, -0.1}, // 0
+	{1, 1, RAW_CLEAR_GRAY,-0.1,  0.2,  0.1}, // 7
+	{0, 1, RAW_CLEAR_GRAY,-0.1, -0.2,  0.1}, // 4
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1,  0.2, -0.1}, // 0
+	{1, 0, RAW_CLEAR_GRAY, 0.1,  0.2, -0.1}, // 1
+	{1, 1, RAW_CLEAR_GRAY, 0.1,  0.2,  0.1}, // 2
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1,  0.2, -0.1}, // 0
+	{1, 1, RAW_CLEAR_GRAY, 0.1,  0.2,  0.1}, // 2
+	{0, 1, RAW_CLEAR_GRAY,-0.1,  0.2,  0.1}, // 3
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1, -0.2, -0.1}, // 4
+	{1, 0, RAW_CLEAR_GRAY,-0.1, -0.2,  0.1}, // 7
+	{1, 1, RAW_CLEAR_GRAY, 0.1, -0.2,  0.1}, // 6
+
+	{0, 0, RAW_CLEAR_GRAY,-0.1, -0.2, -0.1}, // 4
+	{1, 1, RAW_CLEAR_GRAY, 0.1, -0.2,  0.1}, // 6
+	{0, 1, RAW_CLEAR_GRAY, 0.1, -0.2, -0.1}, // 5
+};
+
 struct Vertex3D __attribute__((aligned(16))) playerVertices[12*3] =
 {
 	{0, 0, 0xff7f0000,-1,-1, 1}, // 0
@@ -71,57 +122,8 @@ struct Vertex3D __attribute__((aligned(16))) playerVertices[12*3] =
 	{0, 1, 0xff00007f, 1,-1,-1}, // 5
 };
 
-// void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer, bool activateMore)
-// {
-//     sceGuInit();
-
-//     //Set up buffers
-//     sceGuStart(GU_DIRECT, list);
-//     sceGuDrawBuffer(GU_PSM_8888, frameBuffer0, BUFFER_WIDTH);
-//     sceGuDispBuffer(SCREEN_WIDTH, SCREEN_HEIGHT, frameBuffer1, BUFFER_WIDTH);
-//     sceGuDepthBuffer(depthBuffer, BUFFER_WIDTH);
-
-//     //Set up viewport
-//     sceGuOffset(2048 - (SCREEN_WIDTH / 2), 2048 - (SCREEN_HEIGHT / 2));
-//     sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
-//     sceGuEnable(GU_SCISSOR_TEST);
-//     sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-//     //Set some stuff
-//     sceGuDepthRange(65535, 0); //Use the full buffer for depth testing - buffer is reversed order
-
-//     sceGuDepthFunc(GU_GEQUAL); //Depth buffer is reversed, so GEQUAL instead of LEQUAL
-//     sceGuEnable(GU_DEPTH_TEST); //Enable depth testing
-//     if (activateMore == true)
-//     {
-//         // for cube
-//         sceGuFrontFace(GU_CW);
-//         sceGuShadeModel(GU_SMOOTH);
-//         sceGuEnable(GU_CULL_FACE);
-//         sceGuEnable(GU_TEXTURE_2D);
-//         sceGuEnable(GU_CLIP_PLANES);
-
-//         // for font
-//         // sceGuDisable(GU_DEPTH_TEST);
-//         // sceGuShadeModel(GU_SMOOTH);
-//         // sceGuEnable(GU_BLEND);
-//         // sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
-//         // // sceGuEnable(GU_TEXTURE_2D);
-//         // sceGuTexMode(GU_PSM_8888, 0, 0, 0);
-//         // sceGuTexImage(0, 256, 128, 256, font);
-//         // sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
-//         // sceGuTexEnvColor(0x0);
-//         // sceGuTexOffset(0.0f, 0.0f);
-//         // sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
-//         // sceGuTexWrap(GU_REPEAT, GU_REPEAT);
-//         // sceGuTexFilter(GU_NEAREST, GU_NEAREST);
-//     }
-// 	sceGuFinish();
-// 	sceGuSync(0,0);
-// 	sceGuDisplay(GU_TRUE);
-// }
-
-void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer, bool isForFont) {
+void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer) 
+{
     sceGuInit();
     sceGuStart(GU_DIRECT, list);
     
@@ -134,29 +136,27 @@ void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer, bool isFo
     sceGuEnable(GU_SCISSOR_TEST);
     sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
-    if (isForFont) {
-        // Configurações específicas para fontes
-	    sceGuDepthRange(0xc350,0x2710);
-        sceGuDisable(GU_DEPTH_TEST);
-        sceGuEnable(GU_BLEND);
-        sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
-        sceGuEnable(GU_TEXTURE_2D);
-        sceGuTexMode(GU_PSM_8888, 0, 0, 0);
-        sceGuTexImage(0, 256, 128, 256, font);
-        sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
-        sceGuTexEnvColor(0x0);
-        sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
-        sceGuTexFilter(GU_NEAREST, GU_NEAREST);
-    } else {
-        // Configurações específicas para objetos 3D (cubo)
-        sceGuDepthRange(65535, 0);
-        sceGuEnable(GU_DEPTH_TEST);
-        sceGuFrontFace(GU_CW);
-        sceGuShadeModel(GU_SMOOTH);
-        sceGuEnable(GU_CULL_FACE);
-        sceGuEnable(GU_TEXTURE_2D);
-        sceGuEnable(GU_CLIP_PLANES);
-    }
+    // Configurações específicas para fontes
+    sceGuDepthRange(0xc350,0x2710);
+    sceGuDisable(GU_DEPTH_TEST);
+    sceGuEnable(GU_BLEND);
+    sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
+    sceGuEnable(GU_TEXTURE_2D);
+    sceGuTexMode(GU_PSM_8888, 0, 0, 0);
+    sceGuTexImage(0, 256, 128, 256, font);
+    sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
+    sceGuTexEnvColor(0x0);
+    sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
+    sceGuTexFilter(GU_NEAREST, GU_NEAREST);
+
+    // old render properties legacy
+    // sceGuDepthRange(65535, 0);
+    //sceGuEnable(GU_DEPTH_TEST);
+    sceGuFrontFace(GU_CW);
+    sceGuShadeModel(GU_SMOOTH);
+    sceGuEnable(GU_CULL_FACE);
+    // sceGuEnable(GU_TEXTURE_2D);
+    sceGuEnable(GU_CLIP_PLANES);
     
     sceGuFinish();
     sceGuSync(0, 0);
@@ -225,43 +225,6 @@ void endFrame()
 FONT
 ************************
 */
-
-void initGuForFont()
-{
-    sceGuInit();
-
-    //Set up buffers
-	sceGuStart(GU_DIRECT, listFont); // verificar
-	sceGuDrawBuffer(GU_PSM_8888,(void*)0,BUF_WIDTH);
-	sceGuDispBuffer(SCR_WIDTH,SCR_HEIGHT,(void*)0x88000,BUF_WIDTH);
-	sceGuDepthBuffer((void*)0x110000,BUF_WIDTH);
-
-    //Set up viewport
-	sceGuOffset(2048 - (SCR_WIDTH/2),2048 - (SCR_HEIGHT/2));
-	sceGuViewport(2048,2048,SCR_WIDTH,SCR_HEIGHT);
-    sceGuEnable(GU_SCISSOR_TEST);
-	sceGuScissor(0, 0, SCR_WIDTH,SCR_HEIGHT);
-
-    //Set some stuff
-	sceGuDepthRange(0xc350,0x2710);
-
-	sceGuDisable(GU_DEPTH_TEST);
-	sceGuShadeModel(GU_SMOOTH);
-	sceGuEnable(GU_BLEND);
-	sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
-	sceGuEnable(GU_TEXTURE_2D);
-	sceGuTexMode(GU_PSM_8888, 0, 0, 0);
-	sceGuTexImage(0, 256, 128, 256, font);
-	sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
-	sceGuTexEnvColor(0x0);
-	sceGuTexOffset(0.0f, 0.0f);
-	sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
-	sceGuTexWrap(GU_REPEAT, GU_REPEAT);
-	sceGuTexFilter(GU_NEAREST, GU_NEAREST);
-	sceGuFinish();
-	sceGuSync(0,0);
-	sceGuDisplay(GU_TRUE);
-}
 
 // fw = fontwidth
 void drawStr(const char* text, int x, int y, unsigned int color, int fw)
@@ -381,6 +344,43 @@ const char* drawStr2(const char* text, int x, int y, unsigned int color, int fw)
     return text;
 }
 
+void initGuForFont()
+{
+    sceGuInit();
+
+    //Set up buffers
+	sceGuStart(GU_DIRECT, listFont); // verificar
+	sceGuDrawBuffer(GU_PSM_8888,(void*)0,BUF_WIDTH);
+	sceGuDispBuffer(SCR_WIDTH,SCR_HEIGHT,(void*)0x88000,BUF_WIDTH);
+	sceGuDepthBuffer((void*)0x110000,BUF_WIDTH);
+
+    //Set up viewport
+	sceGuOffset(2048 - (SCR_WIDTH/2),2048 - (SCR_HEIGHT/2));
+	sceGuViewport(2048,2048,SCR_WIDTH,SCR_HEIGHT);
+    sceGuEnable(GU_SCISSOR_TEST);
+	sceGuScissor(0, 0, SCR_WIDTH,SCR_HEIGHT);
+
+    //Set some stuff
+	sceGuDepthRange(0xc350,0x2710);
+
+	sceGuDisable(GU_DEPTH_TEST);
+	sceGuShadeModel(GU_SMOOTH);
+	sceGuEnable(GU_BLEND);
+	sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
+	sceGuEnable(GU_TEXTURE_2D);
+	sceGuTexMode(GU_PSM_8888, 0, 0, 0);
+	sceGuTexImage(0, 256, 128, 256, font);
+	sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
+	sceGuTexEnvColor(0x0);
+	sceGuTexOffset(0.0f, 0.0f);
+	sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
+	sceGuTexWrap(GU_REPEAT, GU_REPEAT);
+	sceGuTexFilter(GU_NEAREST, GU_NEAREST);
+	sceGuFinish();
+	sceGuSync(0,0);
+	sceGuDisplay(GU_TRUE);
+}
+
 // CUBE
 // Variaveis de renderização do cubo
 int textureImageWidth = 64;
@@ -394,74 +394,56 @@ float flatCube =  16.0f/9.0f;
 float verticeProximityScreen = 0.5f;
     
 
-void renderCube(float posX, float posY, float posZ, struct Vertex3D* vertices)
+void renderPlayer(float posX, float posY, float posZ)
 {
-		// sceGuClearDepth(0);
-		// sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
-
-		// sceGumMatrixMode(GU_PROJECTION);
-		// sceGumLoadIdentity();
-		// // cube perspective and pos and rot
-		// sceGumPerspective(ZDepth, flatCube, verticeProximityScreen, 1000.0f);
-		
-        // // camera view
-        // sceGumMatrixMode(GU_VIEW);
-		// sceGumLoadIdentity();
-
         // model
 		sceGumMatrixMode(GU_MODEL);
 		sceGumLoadIdentity();
-		{
-			// Initial pos
-            ScePspFVector3 pos = { posX, posY, posZ };
-			sceGumTranslate(&pos);
-		}
+        // Initial pos
+        ScePspFVector3 pos = { posX, posY, posZ };
+        sceGumTranslate(&pos);
 
-		// setup texture and draw cube
-		sceGuTexMode(GU_PSM_5650, 0,0,0);
-		sceGuTexImage(0,textureImageWidth,textureImageHeight,textureImageStride,logo_start);
-		sceGuTexFunc(GU_TFX_ADD,GU_TCC_RGB); // Define como a textura será combinada com a cor base dos vértices.
-		sceGuTexEnvColor(0xffff00); // sinceramente, nao vi mt diferenca
-		
-        // set filters
-        sceGuTexFilter(GU_LINEAR,GU_LINEAR);
+		// SETUP TEXTURE 1
+		// sceGuTexMode(GU_PSM_5650, 0,0,0);
+		// sceGuTexImage(0, textureImageWidth, textureImageHeight, textureImageStride, logo_start);
+		// sceGuTexFunc(GU_TFX_ADD,GU_TCC_RGB); // Define como a textura será combinada com a cor base dos vértices.
+		// sceGuTexEnvColor(0xffff00); // sinceramente, nao vi mt diferenca
+        // sceGuTexFilter(GU_LINEAR,GU_LINEAR);
+		// sceGuTexScale(1.0f,1.0f);
+		// sceGuTexOffset(0.0f,0.0f);
+		// sceGuAmbientColor(0xffffffff);
+
+        // SETUP TEXTURE 2
+        sceGuTexMode(GU_PSM_4444,0,0,0);
+		sceGuTexImage(0,64,64,64, logo_start);
+		sceGuTexFunc(GU_TFX_ADD,GU_TCC_RGB);
+		sceGuTexEnvColor(0xffff00);
+		sceGuTexFilter(GU_LINEAR,GU_LINEAR);
 		sceGuTexScale(1.0f,1.0f);
 		sceGuTexOffset(0.0f,0.0f);
 		sceGuAmbientColor(0xffffffff);
-		sceGumDrawArray(GU_TRIANGLES,GU_TEXTURE_32BITF|GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D,12*3,0, vertices);
-		// sceGuFinish();
-		// sceGuSync(0,0);
+
+		sceGumDrawArray(GU_TRIANGLES,GU_TEXTURE_32BITF|GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D,12*3,0, playerVertices);
 }
 
-void renderPlane(float posX, float posY, float posZ)
+void renderBuilding(float posX, float posY, float posZ, float scaleX, float scaleY, float scaleZ, struct Vertex3D *vertices)
 {
-    // essas funcoes limpam os buffers
-    // sceGuClearDepth(0);
-    // sceGuClear(GU_COLOR_BUFFER_BIT|GU_DEPTH_BUFFER_BIT);
+        // model
+		sceGumMatrixMode(GU_MODEL);
+		sceGumLoadIdentity();
+        // Initial pos
+        ScePspFVector3 pos = { posX, posY, posZ }; // Aproximar o prédio
+        ScePspFVector3 scale = { scaleX, scaleY, scaleZ }; // Escalar o prédio (aumentar)
+        sceGumTranslate(&pos);
+        sceGumScale(&scale);
 
-    // setup matrices for cube
-    //Projection
-    // sceGumMatrixMode(GU_PROJECTION);
-    // sceGumLoadIdentity();
-    // sceGumPerspective(75.0f, 16.0f / 9.0f, 0.5, 1000.f);
+        // Desativar texturas
+        sceGuDisable(GU_TEXTURE_2D);
 
-    // // camera view
-    // sceGumMatrixMode(GU_VIEW);
-    // sceGumLoadIdentity();
+		sceGuAmbientColor(0xffffffff);
+		sceGumDrawArray(GU_TRIANGLES,GU_TEXTURE_32BITF|GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D,12*3,0, vertices);
 
-    sceGumMatrixMode(GU_MODEL);
-    sceGumLoadIdentity();
-    ScePspFVector3 pos = { posX, posY, posZ };
-    sceGumTranslate(&pos);
-    
-    sceGuDisable(GU_TEXTURE_2D); // Desabilita o uso de texturas
-
-    sceGuColor(0xffffffff);
-    sceGuAmbientColor(0xffffffff);
-    sceGumDrawArray(GU_TRIANGLES,GU_TEXTURE_32BITF| GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D,2*3,0, planeVertices);
-   
-    // sceGuFinish();
-    // sceGuSync(0,0);
+        sceGuEnable(GU_TEXTURE_2D);
 }
 
 void renderScene(float posX, float posY, float posZ)
@@ -479,9 +461,18 @@ void renderScene(float posX, float posY, float posZ)
     sceGumMatrixMode(GU_VIEW);
     sceGumLoadIdentity();
 
+    // Inicializar o gerador de números aleatórios
+    static SceKernelUtilsMt19937Context ctx;
+    sceKernelUtilsMt19937Init(&ctx, sceKernelLibcClock());
+
     // Renderizar os objetos
-    renderPlane(0.0f, 0.0f, -20.0f); // Exemplo de posição do plano
-    renderCube(posX, posY, posZ, playerVertices); // Exemplo de posição do cubo
+    int buildingPosX = -20.0f;
+    for(int i = 0; i < 20; i++)
+    {
+        renderBuilding(buildingPosX, 0.0f, -6.0f, 3.5f, 3.5f, 3.5f, buildingModel);
+        buildingPosX = buildingPosX + 2.0f;
+    }
+    renderPlayer(posX, posY, posZ); // Exemplo de posição do cubo
 
     // Finalizar
     sceGuFinish();

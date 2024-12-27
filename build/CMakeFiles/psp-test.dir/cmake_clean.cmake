@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "/home/caiomadeira/Desktop/pspsdk-samples/src/face.o"
   "/home/caiomadeira/Desktop/pspsdk-samples/src/font.c"
   "/home/caiomadeira/Desktop/pspsdk-samples/src/logo.o"
   "CMakeFiles/psp-test.dir/src/common.c.obj"

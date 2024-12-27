@@ -143,6 +143,19 @@ generate_logo_o/fast:
 .PHONY : generate_logo_o/fast
 
 #=============================================================================
+# Target rules for targets named generate_face_o
+
+# Build rule for target.
+generate_face_o: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generate_face_o
+.PHONY : generate_face_o
+
+# fast build rule for target.
+generate_face_o/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_face_o.dir/build.make CMakeFiles/generate_face_o.dir/build
+.PHONY : generate_face_o/fast
+
+#=============================================================================
 # Target rules for targets named psp-test
 
 # Build rule for target.
@@ -307,6 +320,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... generate_face_o"
 	@echo "... generate_font_c"
 	@echo "... generate_logo_o"
 	@echo "... psp-test"

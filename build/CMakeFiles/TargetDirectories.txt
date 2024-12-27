@@ -1,5 +1,6 @@
 /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles/generate_font_c.dir
 /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles/generate_logo_o.dir
+/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles/generate_face_o.dir
 /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles/psp-test.dir
 /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles/edit_cache.dir
 /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles/rebuild_cache.dir

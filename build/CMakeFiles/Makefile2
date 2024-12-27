@@ -73,6 +73,7 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/generate_font_c.dir/clean
 clean: CMakeFiles/generate_logo_o.dir/clean
+clean: CMakeFiles/generate_face_o.dir/clean
 clean: CMakeFiles/psp-test.dir/clean
 .PHONY : clean
 
@@ -83,7 +84,7 @@ clean: CMakeFiles/psp-test.dir/clean
 CMakeFiles/generate_font_c.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_font_c.dir/build.make CMakeFiles/generate_font_c.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_font_c.dir/build.make CMakeFiles/generate_font_c.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=1 "Built target generate_font_c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=2 "Built target generate_font_c"
 .PHONY : CMakeFiles/generate_font_c.dir/all
 
 # Build rule for subdir invocation for target.
@@ -109,7 +110,7 @@ CMakeFiles/generate_font_c.dir/clean:
 CMakeFiles/generate_logo_o.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_logo_o.dir/build.make CMakeFiles/generate_logo_o.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_logo_o.dir/build.make CMakeFiles/generate_logo_o.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=2 "Built target generate_logo_o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=3 "Built target generate_logo_o"
 .PHONY : CMakeFiles/generate_logo_o.dir/all
 
 # Build rule for subdir invocation for target.
@@ -129,19 +130,46 @@ CMakeFiles/generate_logo_o.dir/clean:
 .PHONY : CMakeFiles/generate_logo_o.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/generate_face_o.dir
+
+# All Build rule for target.
+CMakeFiles/generate_face_o.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_face_o.dir/build.make CMakeFiles/generate_face_o.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_face_o.dir/build.make CMakeFiles/generate_face_o.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=1 "Built target generate_face_o"
+.PHONY : CMakeFiles/generate_face_o.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/generate_face_o.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/generate_face_o.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles 0
+.PHONY : CMakeFiles/generate_face_o.dir/rule
+
+# Convenience name for target.
+generate_face_o: CMakeFiles/generate_face_o.dir/rule
+.PHONY : generate_face_o
+
+# clean rule for target.
+CMakeFiles/generate_face_o.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_face_o.dir/build.make CMakeFiles/generate_face_o.dir/clean
+.PHONY : CMakeFiles/generate_face_o.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/psp-test.dir
 
 # All Build rule for target.
 CMakeFiles/psp-test.dir/all: CMakeFiles/generate_font_c.dir/all
 CMakeFiles/psp-test.dir/all: CMakeFiles/generate_logo_o.dir/all
+CMakeFiles/psp-test.dir/all: CMakeFiles/generate_face_o.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11 "Built target psp-test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles --progress-num=4,5,6,7,8,9,10,11,12,13 "Built target psp-test"
 .PHONY : CMakeFiles/psp-test.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/psp-test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/psp-test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/build/CMakeFiles 0
 .PHONY : CMakeFiles/psp-test.dir/rule

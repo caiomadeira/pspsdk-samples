@@ -20,9 +20,10 @@ typedef struct {
 	//u32 color;
 } Vertex;
 
-// CUBE
-
+// TEXTURE TEST - LOGO
 extern unsigned char logo_start[];
+extern unsigned char face_start[];
+
 
 struct Vertex3D
 {
@@ -31,17 +32,16 @@ struct Vertex3D
 	float x,y,z;
 };
 
-extern struct Vertex3D __attribute__((aligned(16))) cubeVertices[12*3];
-extern struct Vertex3D __attribute__((aligned(16))) planeVertices[2*3];
+//extern struct Vertex3D __attribute__((aligned(16))) cubeVertices[12*3];
+extern struct Vertex3D __attribute__((aligned(16))) buildingVertices[12*3];
 
 // FUNCTIONS
-void renderCube(float posX, float posY, float posZ, struct Vertex3D* vertices);
-void renderPlane(float posX, float posY, float posZ);
-void configureGuForMenu();
-void configureGuForCube();
+void renderPlayer(float posX, float posY, float posZ);
+void renderBuilding(float posX, float posY, float posZ, float scaleX, float scaleY, float scaleZ, struct Vertex3D *vertices);
+void renderScene(float posX, float posY, float posZ);
 
 // Inicializa o pipeline gráfico
-void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer, bool activateMore);
+void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer);
 
 // Finaliza o pipeline gráfico
 void endGu();
@@ -52,7 +52,6 @@ void startFrameCube(u32 backgroundColor);
 void startFrameCubeNoBackground(void);
 void startFramePlane(u32 backgroundColor);
 void startFrameCubeAndPlane();
-void renderScene(float posX, float posY, float posZ);
 // Finaliza e apresenta o frame
 void endFrame();
 
