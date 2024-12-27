@@ -1,33 +1,153 @@
-#include "common.h"
 #include "graphic.h"
 #include "font.c"
 
 char list[0x20000] __attribute__((aligned(64)));
+static unsigned int __attribute__((aligned(16))) listFont[262144];
+static unsigned int __attribute__((aligned(16))) listCube[262144];
 
-void initGu(){
+struct Vertex3D __attribute__((aligned(16))) vertices[12*3] =
+{
+	{0, 0, 0xff7f0000,-1,-1, 1}, // 0
+	{1, 0, 0xff7f0000,-1, 1, 1}, // 4
+	{1, 1, 0xff7f0000, 1, 1, 1}, // 5
+
+	{0, 0, 0xff7f0000,-1,-1, 1}, // 0
+	{1, 1, 0xff7f0000, 1, 1, 1}, // 5
+	{0, 1, 0xff7f0000, 1,-1, 1}, // 1
+
+	{0, 0, 0xff7f0000,-1,-1,-1}, // 3
+	{1, 0, 0xff7f0000, 1,-1,-1}, // 2
+	{1, 1, 0xff7f0000, 1, 1,-1}, // 6
+
+	{0, 0, 0xff7f0000,-1,-1,-1}, // 3
+	{1, 1, 0xff7f0000, 1, 1,-1}, // 6
+	{0, 1, 0xff7f0000,-1, 1,-1}, // 7
+
+	{0, 0, 0xff007f00, 1,-1,-1}, // 0
+	{1, 0, 0xff007f00, 1,-1, 1}, // 3
+	{1, 1, 0xff007f00, 1, 1, 1}, // 7
+
+	{0, 0, 0xff007f00, 1,-1,-1}, // 0
+	{1, 1, 0xff007f00, 1, 1, 1}, // 7
+	{0, 1, 0xff007f00, 1, 1,-1}, // 4
+
+	{0, 0, 0xff007f00,-1,-1,-1}, // 0
+	{1, 0, 0xff007f00,-1, 1,-1}, // 3
+	{1, 1, 0xff007f00,-1, 1, 1}, // 7
+
+	{0, 0, 0xff007f00,-1,-1,-1}, // 0
+	{1, 1, 0xff007f00,-1, 1, 1}, // 7
+	{0, 1, 0xff007f00,-1,-1, 1}, // 4
+
+	{0, 0, 0xff00007f,-1, 1,-1}, // 0
+	{1, 0, 0xff00007f, 1, 1,-1}, // 1
+	{1, 1, 0xff00007f, 1, 1, 1}, // 2
+
+	{0, 0, 0xff00007f,-1, 1,-1}, // 0
+	{1, 1, 0xff00007f, 1, 1, 1}, // 2
+	{0, 1, 0xff00007f,-1, 1, 1}, // 3
+
+	{0, 0, 0xff00007f,-1,-1,-1}, // 4
+	{1, 0, 0xff00007f,-1,-1, 1}, // 7
+	{1, 1, 0xff00007f, 1,-1, 1}, // 6
+
+	{0, 0, 0xff00007f,-1,-1,-1}, // 4
+	{1, 1, 0xff00007f, 1,-1, 1}, // 6
+	{0, 1, 0xff00007f, 1,-1,-1}, // 5
+};
+
+// void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer, bool activateMore)
+// {
+//     sceGuInit();
+
+//     //Set up buffers
+//     sceGuStart(GU_DIRECT, list);
+//     sceGuDrawBuffer(GU_PSM_8888, frameBuffer0, BUFFER_WIDTH);
+//     sceGuDispBuffer(SCREEN_WIDTH, SCREEN_HEIGHT, frameBuffer1, BUFFER_WIDTH);
+//     sceGuDepthBuffer(depthBuffer, BUFFER_WIDTH);
+
+//     //Set up viewport
+//     sceGuOffset(2048 - (SCREEN_WIDTH / 2), 2048 - (SCREEN_HEIGHT / 2));
+//     sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
+//     sceGuEnable(GU_SCISSOR_TEST);
+//     sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+//     //Set some stuff
+//     sceGuDepthRange(65535, 0); //Use the full buffer for depth testing - buffer is reversed order
+
+//     sceGuDepthFunc(GU_GEQUAL); //Depth buffer is reversed, so GEQUAL instead of LEQUAL
+//     sceGuEnable(GU_DEPTH_TEST); //Enable depth testing
+//     if (activateMore == true)
+//     {
+//         // for cube
+//         sceGuFrontFace(GU_CW);
+//         sceGuShadeModel(GU_SMOOTH);
+//         sceGuEnable(GU_CULL_FACE);
+//         sceGuEnable(GU_TEXTURE_2D);
+//         sceGuEnable(GU_CLIP_PLANES);
+
+//         // for font
+//         // sceGuDisable(GU_DEPTH_TEST);
+//         // sceGuShadeModel(GU_SMOOTH);
+//         // sceGuEnable(GU_BLEND);
+//         // sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
+//         // // sceGuEnable(GU_TEXTURE_2D);
+//         // sceGuTexMode(GU_PSM_8888, 0, 0, 0);
+//         // sceGuTexImage(0, 256, 128, 256, font);
+//         // sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
+//         // sceGuTexEnvColor(0x0);
+//         // sceGuTexOffset(0.0f, 0.0f);
+//         // sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
+//         // sceGuTexWrap(GU_REPEAT, GU_REPEAT);
+//         // sceGuTexFilter(GU_NEAREST, GU_NEAREST);
+//     }
+// 	sceGuFinish();
+// 	sceGuSync(0,0);
+// 	sceGuDisplay(GU_TRUE);
+// }
+
+void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer, bool isForFont) {
     sceGuInit();
-
-    //Set up buffers
     sceGuStart(GU_DIRECT, list);
-    sceGuDrawBuffer(GU_PSM_8888,(void*)0,BUFFER_WIDTH);
-    sceGuDispBuffer(SCREEN_WIDTH,SCREEN_HEIGHT,(void*)0x88000,BUFFER_WIDTH);
-    sceGuDepthBuffer((void*)0x110000,BUFFER_WIDTH);
-
-    //Set up viewport
+    
+    // Setup básico
+    sceGuDrawBuffer(GU_PSM_8888, frameBuffer0, BUFFER_WIDTH);
+    sceGuDispBuffer(SCREEN_WIDTH, SCREEN_HEIGHT, frameBuffer1, BUFFER_WIDTH);
+    sceGuDepthBuffer(depthBuffer, BUFFER_WIDTH);
     sceGuOffset(2048 - (SCREEN_WIDTH / 2), 2048 - (SCREEN_HEIGHT / 2));
     sceGuViewport(2048, 2048, SCREEN_WIDTH, SCREEN_HEIGHT);
     sceGuEnable(GU_SCISSOR_TEST);
     sceGuScissor(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-    //Set some stuff
-    sceGuDepthRange(65535, 0); //Use the full buffer for depth testing - buffer is reversed order
-
-    sceGuDepthFunc(GU_GEQUAL); //Depth buffer is reversed, so GEQUAL instead of LEQUAL
-    sceGuEnable(GU_DEPTH_TEST); //Enable depth testing
-
+    
+    if (isForFont) {
+        // Configurações específicas para fontes
+	    sceGuDepthRange(0xc350,0x2710);
+        sceGuDisable(GU_DEPTH_TEST);
+        sceGuEnable(GU_BLEND);
+        sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
+        sceGuEnable(GU_TEXTURE_2D);
+        sceGuTexMode(GU_PSM_8888, 0, 0, 0);
+        sceGuTexImage(0, 256, 128, 256, font);
+        sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
+        sceGuTexEnvColor(0x0);
+        sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
+        sceGuTexFilter(GU_NEAREST, GU_NEAREST);
+    } else {
+        // Configurações específicas para objetos 3D (cubo)
+        sceGuDepthRange(65535, 0);
+        sceGuEnable(GU_DEPTH_TEST);
+        sceGuFrontFace(GU_CW);
+        sceGuShadeModel(GU_SMOOTH);
+        sceGuEnable(GU_CULL_FACE);
+        sceGuEnable(GU_TEXTURE_2D);
+        sceGuEnable(GU_CLIP_PLANES);
+    }
+    
     sceGuFinish();
+    sceGuSync(0, 0);
     sceGuDisplay(GU_TRUE);
 }
+
 
 void endGu()
 {
@@ -43,54 +163,21 @@ void startFrame(u32 backgroundColor)
     sceGuClear(GU_COLOR_BUFFER_BIT);
 }
 
+void startFrameCube(u32 backgroundColor)
+{
+    sceGuStart(GU_DIRECT, list);
+    if (backgroundColor != 0)
+        sceGuClearColor(backgroundColor); // White background
+    sceGuClearDepth(0); 
+	sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
+}
+
 void endFrame()
 {
     sceGuFinish();
     sceGuSync(0, 0);
     sceDisplayWaitVblankStart();
     sceGuSwapBuffers();
-}
-
-/*
-************************
-VERIFIEDS SHAPE FUNCTIONS
-************************
-*/
-
-void drawRect(float x, float y, float w, float h) 
-{
-    Vertex* vertices = (Vertex*)sceGuGetMemory(2 * sizeof(Vertex));
-
-    vertices[0].x = x;
-    vertices[0].y = y;
-
-    vertices[1].x = x + w;
-    vertices[1].y = y + h;
-
-    sceGuColor(0xFF0000FF); // Red, colors are ABGR
-    sceGuDrawArray(GU_SPRITES, GU_TEXTURE_16BIT | GU_VERTEX_16BIT | GU_TRANSFORM_2D, 2, 0, vertices);
-}
-
-void drawTriangle(float baseX, float baseY, float width, float height, u32 color)
-{
-    Vertex* v = (Vertex*)sceGuGetMemory(3 * sizeof(Vertex));
-
-    v[0].x = baseX;
-    v[0].y = baseY - height;
-
-    v[1].x = baseX - (width /2);
-    v[1].y = baseY;
-
-    v[2].x = baseX + (width /2);
-    v[2].y = baseY;
-
-    sceGuColor(color);
-    /*
-    GU_TRIANGLES - Representa triangulos independentes onde cada conjunto de 3 vertices forma um triangulo
-    GU_SPRITES: Representa quadriláteros desenhados como dois triângulos conectados. É usado principalmente para desenhar imagens 2D (texturas) ou objetos planos.
-
-    */
-    sceGuDrawArray(GU_TRIANGLES, GU_TEXTURE_16BIT | GU_VERTEX_16BIT | GU_TRANSFORM_2D, 3, 0, v);
 }
 
 /*
@@ -102,15 +189,22 @@ FONT
 void initGuForFont()
 {
     sceGuInit();
-	sceGuStart(GU_DIRECT, listFont);
+
+    //Set up buffers
+	sceGuStart(GU_DIRECT, listFont); // verificar
 	sceGuDrawBuffer(GU_PSM_8888,(void*)0,BUF_WIDTH);
 	sceGuDispBuffer(SCR_WIDTH,SCR_HEIGHT,(void*)0x88000,BUF_WIDTH);
 	sceGuDepthBuffer((void*)0x110000,BUF_WIDTH);
+
+    //Set up viewport
 	sceGuOffset(2048 - (SCR_WIDTH/2),2048 - (SCR_HEIGHT/2));
 	sceGuViewport(2048,2048,SCR_WIDTH,SCR_HEIGHT);
+    sceGuEnable(GU_SCISSOR_TEST);
+	sceGuScissor(0, 0, SCR_WIDTH,SCR_HEIGHT);
+
+    //Set some stuff
 	sceGuDepthRange(0xc350,0x2710);
-	sceGuScissor(0,0,SCR_WIDTH,SCR_HEIGHT);
-	sceGuEnable(GU_SCISSOR_TEST);
+
 	sceGuDisable(GU_DEPTH_TEST);
 	sceGuShadeModel(GU_SMOOTH);
 	sceGuEnable(GU_BLEND);
@@ -245,4 +339,89 @@ const char* drawStr2(const char* text, int x, int y, unsigned int color, int fw)
     sceGumDrawArray(GU_SPRITES, 
     GU_TEXTURE_32BITF | GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D, len * 2, 0, v);
     return text;
+}
+
+// CUBE
+// Variaveis de renderização do cubo
+int textureImageWidth = 64;
+int textureImageHeight = 64;
+int textureImageStride = 64;
+float rotZConst = 1.32f;
+float rotYConst = 0.5f;
+float rotXConst = 0.9f;
+float ZDepth = 75.0f;
+float flatCube =  16.0f/9.0f;
+float verticeProximityScreen = 0.5f;
+    
+
+void renderCube(float posX, float posY, float posZ)
+{
+		sceGuClearDepth(0);
+		sceGuClear(GU_COLOR_BUFFER_BIT | GU_DEPTH_BUFFER_BIT);
+
+		sceGumMatrixMode(GU_PROJECTION);
+		sceGumLoadIdentity();
+		// cube perspective and pos and rot
+		sceGumPerspective(ZDepth, flatCube, verticeProximityScreen, 1000.0f);
+		sceGumMatrixMode(GU_VIEW);
+		sceGumLoadIdentity();
+		sceGumMatrixMode(GU_MODEL);
+		sceGumLoadIdentity();
+		{
+			// Initial pos
+            ScePspFVector3 pos = { posX, posY, posZ };
+			sceGumTranslate(&pos);
+		}
+
+		// // setup texture and draw cube
+		sceGuTexMode(GU_PSM_5650, 0,0,0);
+		sceGuTexImage(0,textureImageWidth,textureImageHeight,textureImageStride,logo_start);
+		sceGuTexFunc(GU_TFX_ADD,GU_TCC_RGB); // Define como a textura será combinada com a cor base dos vértices.
+		sceGuTexEnvColor(0xffff00); // sinceramente, nao vi mt diferenca
+		sceGuTexFilter(GU_LINEAR,GU_LINEAR);
+		sceGuTexScale(1.0f,1.0f);
+		sceGuTexOffset(0.0f,0.0f);
+		sceGuAmbientColor(0xffffffff);
+		sceGumDrawArray(GU_TRIANGLES,GU_TEXTURE_32BITF|GU_COLOR_8888|GU_VERTEX_32BITF|GU_TRANSFORM_3D,12*3,0,vertices);
+		sceGuFinish();
+		sceGuSync(0,0);
+}
+
+int calculateTextWidth(const char* text, int fontwidth) {
+    int width = 0;
+    while (*text) {
+        width += fontwidthtab[(unsigned char)*text++];
+    }
+    return width;
+}
+
+void configureGuForMenu() {
+    sceGuStart(GU_DIRECT, listCube);
+
+    sceGuDisable(GU_DEPTH_TEST);
+    sceGuEnable(GU_BLEND);
+    sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
+    sceGuEnable(GU_TEXTURE_2D);
+    sceGuTexMode(GU_PSM_8888, 0, 0, 0);
+    sceGuTexImage(0, 256, 128, 256, font);
+    sceGuTexFunc(GU_TFX_MODULATE, GU_TCC_RGBA);
+    sceGuTexOffset(0.0f, 0.0f);
+    sceGuTexScale(1.0f / 256.0f, 1.0f / 128.0f);
+
+    sceGuFinish();
+    sceGuSync(0, 0);
+}
+
+void configureGuForCube() {
+    sceGuStart(GU_DIRECT, list);
+
+    sceGuEnable(GU_DEPTH_TEST);
+    sceGuFrontFace(GU_CW);
+    sceGuShadeModel(GU_SMOOTH);
+    sceGuEnable(GU_CULL_FACE);
+    sceGuEnable(GU_TEXTURE_2D);
+    sceGuEnable(GU_CLIP_PLANES);
+
+    sceGuFinish();
+    sceGuSync(0, 0);
 }

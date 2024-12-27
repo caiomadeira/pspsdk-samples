@@ -1,0 +1,5 @@
+# Hashes of file build rules.
+308caac108cb801f4ff218edce68f743 CMakeFiles/generate_font_c
+308caac108cb801f4ff218edce68f743 CMakeFiles/generate_logo_o
+9fe26f254e033af040bb264d9eacb32d src/font.c
+d70eb086491efa13ea222e2e1b7f486d src/logo.o

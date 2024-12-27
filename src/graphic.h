@@ -17,17 +17,36 @@
 typedef struct {
     unsigned short u, v;
     short x, y, z;
+	u32 color;
 } Vertex;
 
+// CUBE
+
+extern unsigned char logo_start[];
+
+struct Vertex3D
+{
+	float u, v;
+	unsigned int color;
+	float x,y,z;
+};
+
+extern struct Vertex3D __attribute__((aligned(16))) vertices[12*3];
+
+// FUNCTIONS
+void renderCube(float posX, float posY, float posZ);
+void configureGuForMenu();
+void configureGuForCube();
+
 // Inicializa o pipeline gráfico
-void initGu();
+void initGu(void* frameBuffer0, void* frameBuffer1, void* depthBuffer, bool activateMore);
 
 // Finaliza o pipeline gráfico
 void endGu();
 
 // Inicia o desenho de um frame
 void startFrame();
-
+void startFrameCube(u32 backgroundColor);
 // Finaliza e apresenta o frame
 void endFrame();
 
@@ -39,6 +58,7 @@ void initGuForFont();
 void drawStr(const char* text, int x, int y, unsigned int color, int fw);
 const char* drawStr2(const char* text, int x, int y, unsigned int color, int fw);
 void drawStrWithEffectRainbowEffect(const char* text, int x, int y, int fontwidth, float* t);  // Alteração para aceitar float* t
+int calculateTextWidth(const char* text, int fontwidth);
 
 static unsigned int __attribute__((aligned(16))) listFont[262144];
 
@@ -87,5 +107,6 @@ static int fontwidthtab[128] = {
 #define PIXEL_SIZE (4)
 #define FRAME_SIZE (BUF_WIDTH * SCR_HEIGHT * PIXEL_SIZE)
 #define ZBUF_SIZE (BUF_WIDTH SCR_HEIGHT * 2)
+
 
 #endif

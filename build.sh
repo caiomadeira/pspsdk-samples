@@ -1,6 +1,7 @@
 # Build for CMakeLists.txt
 
 BUILD_DIR=build
+PSP_GAME_DIR=/media/caiomadeira/disk/PSP/GAME/MyTest
 
 create_build_dir()
 {
@@ -31,5 +32,21 @@ run_build() {
     fi
 }
 
-# Call main function run_build()
-run_build
+clean_build_dir() {
+    if [ -d "$BUILD_DIR" ]; then
+        echo "[+] Cleaning build dir..."
+        cd $BUILD_DIR
+        make clean
+        cd ..
+        echo "[+] Build directory cleaned!"
+    else
+        echo "[-] Build directory does not exist. Nothing to clean."
+    fi
+}
+
+# Main script logic
+if [ "$1" == "clean" ]; then
+    clean_build_dir
+else
+    run_build
+fi

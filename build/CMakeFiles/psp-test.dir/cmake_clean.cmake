@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/caiomadeira/Desktop/psp-test/src/font.c"
+  "/home/caiomadeira/Desktop/psp-test/src/logo.o"
   "CMakeFiles/psp-test.dir/src/common.c.obj"
   "CMakeFiles/psp-test.dir/src/common.c.obj.d"
   "CMakeFiles/psp-test.dir/src/font.c.obj"
@@ -8,8 +9,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/psp-test.dir/src/graphic.c.obj.d"
   "CMakeFiles/psp-test.dir/src/main.c.obj"
   "CMakeFiles/psp-test.dir/src/main.c.obj.d"
-  "CMakeFiles/psp-test.dir/src/util.c.obj"
-  "CMakeFiles/psp-test.dir/src/util.c.obj.d"
   "psp-test"
   "psp-test.pdb"
 )

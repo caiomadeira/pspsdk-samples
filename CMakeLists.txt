@@ -10,8 +10,17 @@ add_custom_command(
     COMMENT "Generating font.c from font.raw"
 )
 
-# Adiciona um alvo intermediário para a geração de font.c
+# Adiciona uma regra para gerar logo.o a partir de logo.raw
+add_custom_command(
+    OUTPUT ${CMAKE_SOURCE_DIR}/src/logo.o
+    COMMAND bin2o -i ${CMAKE_SOURCE_DIR}/assets/logo.raw ${CMAKE_SOURCE_DIR}/src/logo.o logo
+    DEPENDS ${CMAKE_SOURCE_DIR}/assets/logo.raw
+    COMMENT "Generating logo.o from logo.raw"
+)
+
+# Adiciona alvos intermediários para a geração de font.c e logo.o
 add_custom_target(generate_font_c DEPENDS ${CMAKE_SOURCE_DIR}/src/font.c)
+add_custom_target(generate_logo_o DEPENDS ${CMAKE_SOURCE_DIR}/src/logo.o)
 
 # Define o executável principal do projeto
 add_executable(${PROJECT_NAME} 
@@ -19,11 +28,11 @@ add_executable(${PROJECT_NAME}
     src/common.c
     src/graphic.c
     src/font.c
-    src/util.c
+    src/logo.o  # Adiciona logo.o como parte do executável
 )
 
-# Faz com que o alvo principal dependa de generate_font_c
-add_dependencies(${PROJECT_NAME} generate_font_c)
+# Faz com que o alvo principal dependa de generate_font_c e generate_logo_o
+add_dependencies(${PROJECT_NAME} generate_font_c generate_logo_o)
 
 # Vincula as bibliotecas necessárias
 target_link_libraries(${PROJECT_NAME} PRIVATE

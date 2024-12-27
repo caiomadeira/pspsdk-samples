@@ -230,15 +230,6 @@ psp-test_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 psp-test_SOURCE_DIR:STATIC=/home/caiomadeira/Desktop/psp-test
 
-//Value Computed by CMake
-shape_BINARY_DIR:STATIC=/home/caiomadeira/Desktop/psp-test/build
-
-//Value Computed by CMake
-shape_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-shape_SOURCE_DIR:STATIC=/home/caiomadeira/Desktop/psp-test
-
 
 ########################
 # INTERNAL cache entries

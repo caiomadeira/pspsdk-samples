@@ -43,5 +43,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/generate_font_c.dir/DependInfo.cmake"
+  "CMakeFiles/generate_logo_o.dir/DependInfo.cmake"
   "CMakeFiles/psp-test.dir/DependInfo.cmake"
   )

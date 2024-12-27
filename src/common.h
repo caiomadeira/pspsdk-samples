@@ -8,10 +8,13 @@
 #include <pspdebug.h>
 #include <pspctrl.h>
 
+#include "color.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <stdbool.h>
 
 // Declara running como extern p/ evitar multilas definicoes
 extern int running;

@@ -130,6 +130,19 @@ generate_font_c/fast:
 .PHONY : generate_font_c/fast
 
 #=============================================================================
+# Target rules for targets named generate_logo_o
+
+# Build rule for target.
+generate_logo_o: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generate_logo_o
+.PHONY : generate_logo_o
+
+# fast build rule for target.
+generate_logo_o/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_logo_o.dir/build.make CMakeFiles/generate_logo_o.dir/build
+.PHONY : generate_logo_o/fast
+
+#=============================================================================
 # Target rules for targets named psp-test
 
 # Build rule for target.
@@ -238,30 +251,6 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/main.c.s
 .PHONY : src/main.c.s
 
-src/util.obj: src/util.c.obj
-.PHONY : src/util.obj
-
-# target to build an object file
-src/util.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/util.c.obj
-.PHONY : src/util.c.obj
-
-src/util.i: src/util.c.i
-.PHONY : src/util.i
-
-# target to preprocess a source file
-src/util.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/util.c.i
-.PHONY : src/util.c.i
-
-src/util.s: src/util.c.s
-.PHONY : src/util.s
-
-# target to generate assembly for a file
-src/util.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/psp-test.dir/build.make CMakeFiles/psp-test.dir/src/util.c.s
-.PHONY : src/util.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -271,6 +260,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... generate_font_c"
+	@echo "... generate_logo_o"
 	@echo "... psp-test"
 	@echo "... src/common.obj"
 	@echo "... src/common.i"
@@ -284,9 +274,6 @@ help:
 	@echo "... src/main.obj"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/util.obj"
-	@echo "... src/util.i"
-	@echo "... src/util.s"
 .PHONY : help
 
 
