@@ -1,0 +1,3 @@
+/home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles/sdl3-gl-psp.dir
+/home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles/edit_cache.dir
+/home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles/rebuild_cache.dir
