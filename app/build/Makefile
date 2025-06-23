@@ -117,24 +117,48 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sdl3-gl-psp
+# Target rules for targets named PSPGAME
 
 # Build rule for target.
-sdl3-gl-psp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sdl3-gl-psp
-.PHONY : sdl3-gl-psp
+PSPGAME: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 PSPGAME
+.PHONY : PSPGAME
 
 # fast build rule for target.
-sdl3-gl-psp/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl3-gl-psp.dir/build.make CMakeFiles/sdl3-gl-psp.dir/build
-.PHONY : sdl3-gl-psp/fast
+PSPGAME/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/build
+.PHONY : PSPGAME/fast
+
+include/player.obj: include/player.c.obj
+.PHONY : include/player.obj
+
+# target to build an object file
+include/player.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/include/player.c.obj
+.PHONY : include/player.c.obj
+
+include/player.i: include/player.c.i
+.PHONY : include/player.i
+
+# target to preprocess a source file
+include/player.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/include/player.c.i
+.PHONY : include/player.c.i
+
+include/player.s: include/player.c.s
+.PHONY : include/player.s
+
+# target to generate assembly for a file
+include/player.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/include/player.c.s
+.PHONY : include/player.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
 
 # target to build an object file
 main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl3-gl-psp.dir/build.make CMakeFiles/sdl3-gl-psp.dir/main.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/main.c.obj
 .PHONY : main.c.obj
 
 main.i: main.c.i
@@ -142,7 +166,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl3-gl-psp.dir/build.make CMakeFiles/sdl3-gl-psp.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -150,7 +174,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl3-gl-psp.dir/build.make CMakeFiles/sdl3-gl-psp.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -161,7 +185,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... sdl3-gl-psp"
+	@echo "... PSPGAME"
+	@echo "... include/player.obj"
+	@echo "... include/player.i"
+	@echo "... include/player.s"
 	@echo "... main.obj"
 	@echo "... main.i"
 	@echo "... main.s"

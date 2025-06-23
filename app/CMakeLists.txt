@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(sdl3-gl-psp)
+project(PSPGAME)
 
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME} 
+    main.c
+    include/player.c
+)
 
 include(FindPkgConfig)
 pkg_search_module(SDL3 REQUIRED sdl3)
@@ -10,8 +13,28 @@ if(NOT PSP)
 	pkg_search_module(GL REQUIRED gl)
 endif()
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${SDL3_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL3_LIBRARIES})
+target_include_directories(${PROJECT_NAME} PRIVATE 
+    ${SDL3_INCLUDE_DIRS}
+    $ENV{PSPDEV}/psp/include
+)
+
+target_link_directories(${PROJECT_NAME} PRIVATE
+    $ENV{PSPDEV}/psp/lib
+)
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+    ${SDL3_LIBRARIES}
+    SDL3 
+    SDL3_image
+
+    png
+    jpeg
+    z
+    
+    pspctrl pspgum pspgu pspdisplay pspdebug pspaudio psphprm psputility pspvram m # Bibliotecas Nativas
+
+)
+
+
 if(NOT PSP)
 	target_include_directories(${PROJECT_NAME} PRIVATE ${GL_INCLUDE_DIRS})
 	target_link_libraries(${PROJECT_NAME} PRIVATE ${GL_LIBRARIES})

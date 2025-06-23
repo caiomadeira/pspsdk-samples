@@ -145,7 +145,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=sdl3-gl-psp
+CMAKE_PROJECT_NAME:STATIC=PSPGAME
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/home/caiomadeira/pspdev/bin/psp-ranlib
@@ -206,8 +206,8 @@ CMAKE_STRIP:FILEPATH=/home/caiomadeira/pspdev/bin/psp-strip
 //Path to a program.
 CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 
-//The CMake toolchain file
-CMAKE_TOOLCHAIN_FILE:FILEPATH=/home/caiomadeira/pspdev/psp/share/pspdev.cmake
+//No help, variable specified on the command line.
+CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=/home/caiomadeira/pspdev/psp/share/pspdev.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -223,6 +223,15 @@ PKG_CONFIG_ARGN:STRING=
 
 //Path to pkg-config
 PKG_CONFIG_EXECUTABLE:STRING=/home/caiomadeira/pspdev/bin/psp-pkg-config
+
+//Value Computed by CMake
+PSPGAME_BINARY_DIR:STATIC=/home/caiomadeira/Desktop/pspsdk-samples/app/build
+
+//Value Computed by CMake
+PSPGAME_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+PSPGAME_SOURCE_DIR:STATIC=/home/caiomadeira/Desktop/pspsdk-samples/app
 
 //Path to a library.
 pkgcfg_lib_SDL3_GL:FILEPATH=/home/caiomadeira/pspdev/psp/lib/libGL.a
@@ -259,15 +268,6 @@ pkgcfg_lib_SDL3_pspvfpu:FILEPATH=/home/caiomadeira/pspdev/psp/sdk/lib/libpspvfpu
 
 //Path to a library.
 pkgcfg_lib_SDL3_pspvram:FILEPATH=/home/caiomadeira/pspdev/psp/lib/libpspvram.a
-
-//Value Computed by CMake
-sdl3-gl-psp_BINARY_DIR:STATIC=/home/caiomadeira/Desktop/pspsdk-samples/app/build
-
-//Value Computed by CMake
-sdl3-gl-psp_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-sdl3-gl-psp_SOURCE_DIR:STATIC=/home/caiomadeira/Desktop/pspsdk-samples/app
 
 
 ########################

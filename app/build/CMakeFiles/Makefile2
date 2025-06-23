@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/caiomadeira/Desktop/pspsdk-samples/app/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/sdl3-gl-psp.dir/all
+all: CMakeFiles/PSPGAME.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/sdl3-gl-psp.dir/clean
+clean: CMakeFiles/PSPGAME.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/sdl3-gl-psp.dir
+# Target rules for target CMakeFiles/PSPGAME.dir
 
 # All Build rule for target.
-CMakeFiles/sdl3-gl-psp.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl3-gl-psp.dir/build.make CMakeFiles/sdl3-gl-psp.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl3-gl-psp.dir/build.make CMakeFiles/sdl3-gl-psp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles --progress-num=1,2 "Built target sdl3-gl-psp"
-.PHONY : CMakeFiles/sdl3-gl-psp.dir/all
+CMakeFiles/PSPGAME.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles --progress-num=1,2,3 "Built target PSPGAME"
+.PHONY : CMakeFiles/PSPGAME.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/sdl3-gl-psp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/sdl3-gl-psp.dir/all
+CMakeFiles/PSPGAME.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/PSPGAME.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles 0
-.PHONY : CMakeFiles/sdl3-gl-psp.dir/rule
+.PHONY : CMakeFiles/PSPGAME.dir/rule
 
 # Convenience name for target.
-sdl3-gl-psp: CMakeFiles/sdl3-gl-psp.dir/rule
-.PHONY : sdl3-gl-psp
+PSPGAME: CMakeFiles/PSPGAME.dir/rule
+.PHONY : PSPGAME
 
 # clean rule for target.
-CMakeFiles/sdl3-gl-psp.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl3-gl-psp.dir/build.make CMakeFiles/sdl3-gl-psp.dir/clean
-.PHONY : CMakeFiles/sdl3-gl-psp.dir/clean
+CMakeFiles/PSPGAME.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/clean
+.PHONY : CMakeFiles/PSPGAME.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
