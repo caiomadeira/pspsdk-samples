@@ -15,8 +15,25 @@ typedef struct app {
     SceCtrlData pad;
     Player *player;
     SDL_Texture *background_texture;
-    SDL_Renderer *renderer; // É uma boa prática guardar o renderer aqui
+    SDL_Renderer *renderer;
 } app_t;
+
+// Pega o caminho do executável e muda o diretório de trabalho
+void get_binary_path(int argc, char *argv[])
+{
+    if (argc > 0 && argv[0] != NULL)
+    {
+        char* path = strdup(argv[0]);
+        char* last_path = strrchr(path, '/');
+        if (last_path)
+        {
+            *last_path = '\0';
+            chdir(path);
+        }
+        free(path);
+    }
+}
+
 /*
  *:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
  *  ON READY
@@ -25,19 +42,8 @@ typedef struct app {
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv)
 {
 	app_t *a;
-    // ----- ESTE BLOCO É ESSENCIAL -----
-    // Pega o caminho do executável e muda o diretório de trabalho
-    if (argc > 0 && argv[0] != NULL) {
-        char *path = strdup(argv[0]);
-        char *last_slash = strrchr(path, '/');
-        if (last_slash) {
-            *last_slash = '\0';
-            chdir(path);
-        }
-        free(path);
-    }
-    // ----- FIM DO BLOCO ESSENCIAL -----
-
+    get_binary_path(argc, argv);
+    
 	// Ao inves de SDL_NIT_VIDEO | SDL_INIT_GAMEPAD apenas uso o INIT_VIDEO pois os controles usarei a lib manual do psp
 	if (!SDL_Init(SDL_INIT_VIDEO))
     {
