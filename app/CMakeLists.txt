@@ -30,8 +30,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     jpeg
     z
     
-    pspctrl pspgum pspgu pspdisplay pspdebug pspaudio psphprm psputility pspvram m # Bibliotecas Nativas
-
+    pspctrl 
+    pspgum 
+    pspgu 
+    pspdisplay 
+    pspdebug
+    m
 )
 
 

@@ -222,7 +222,6 @@ CMakeFiles/PSPGAME.dir/main.c.obj: /home/caiomadeira/Desktop/pspsdk-samples/app/
   /home/caiomadeira/pspdev/psp/include/SDL3/SDL_tray.h \
   /home/caiomadeira/pspdev/psp/include/SDL3/SDL_version.h \
   /home/caiomadeira/pspdev/psp/include/SDL3/SDL_video.h \
-  /home/caiomadeira/pspdev/psp/include/SDL3_image/SDL_image.h \
   /home/caiomadeira/pspdev/psp/include/_ansi.h \
   /home/caiomadeira/pspdev/psp/include/_newlib_version.h \
   /home/caiomadeira/pspdev/psp/include/alloca.h \
@@ -302,8 +301,6 @@ CMakeFiles/PSPGAME.dir/main.c.obj: /home/caiomadeira/Desktop/pspsdk-samples/app/
   /home/caiomadeira/pspdev/psp/sdk/include/pspuser.h \
   /home/caiomadeira/pspdev/psp/sdk/include/psputils.h
 
-
-/home/caiomadeira/pspdev/psp/include/SDL3_image/SDL_image.h:
 
 /home/caiomadeira/pspdev/psp/include/SDL3/SDL_main.h:
 
