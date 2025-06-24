@@ -129,6 +129,30 @@ PSPGAME/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/build
 .PHONY : PSPGAME/fast
 
+include/audio.obj: include/audio.c.obj
+.PHONY : include/audio.obj
+
+# target to build an object file
+include/audio.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/include/audio.c.obj
+.PHONY : include/audio.c.obj
+
+include/audio.i: include/audio.c.i
+.PHONY : include/audio.i
+
+# target to preprocess a source file
+include/audio.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/include/audio.c.i
+.PHONY : include/audio.c.i
+
+include/audio.s: include/audio.c.s
+.PHONY : include/audio.s
+
+# target to generate assembly for a file
+include/audio.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PSPGAME.dir/build.make CMakeFiles/PSPGAME.dir/include/audio.c.s
+.PHONY : include/audio.c.s
+
 include/player.obj: include/player.c.obj
 .PHONY : include/player.obj
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... PSPGAME"
+	@echo "... include/audio.obj"
+	@echo "... include/audio.i"
+	@echo "... include/audio.s"
 	@echo "... include/player.obj"
 	@echo "... include/player.i"
 	@echo "... include/player.s"

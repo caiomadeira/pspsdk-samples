@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/PSPGAME.dir/include/audio.c.obj"
+  "CMakeFiles/PSPGAME.dir/include/audio.c.obj.d"
   "CMakeFiles/PSPGAME.dir/include/player.c.obj"
   "CMakeFiles/PSPGAME.dir/include/player.c.obj.d"
   "CMakeFiles/PSPGAME.dir/main.c.obj"

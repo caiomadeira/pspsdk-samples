@@ -4,7 +4,7 @@
 # compile C with /home/caiomadeira/pspdev/bin/psp-gcc
 C_DEFINES = -DPSP -D_PSP_FW_VERSION=600 -D__PSP__
 
-C_INCLUDES = 
+C_INCLUDES = -I/home/caiomadeira/pspdev/psp/include/libpng16 -I/psp/include -I/home/caiomadeira/pspdev/psp/include/harfbuzz -I/home/caiomadeira/pspdev/psp/include/freetype2
 
 C_FLAGS = -I/home/caiomadeira/pspdev/psp/include -I/home/caiomadeira/pspdev/psp/sdk/include -DPSP
 

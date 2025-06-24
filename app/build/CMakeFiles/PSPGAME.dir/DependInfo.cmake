@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/caiomadeira/Desktop/pspsdk-samples/app/include/audio.c" "CMakeFiles/PSPGAME.dir/include/audio.c.obj" "gcc" "CMakeFiles/PSPGAME.dir/include/audio.c.obj.d"
   "/home/caiomadeira/Desktop/pspsdk-samples/app/include/player.c" "CMakeFiles/PSPGAME.dir/include/player.c.obj" "gcc" "CMakeFiles/PSPGAME.dir/include/player.c.obj.d"
   "/home/caiomadeira/Desktop/pspsdk-samples/app/main.c" "CMakeFiles/PSPGAME.dir/main.c.obj" "gcc" "CMakeFiles/PSPGAME.dir/main.c.obj.d"
   )

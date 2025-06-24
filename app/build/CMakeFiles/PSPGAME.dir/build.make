@@ -97,19 +97,35 @@ CMakeFiles/PSPGAME.dir/include/player.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/PSPGAME.dir/include/player.c.s"
 	/home/caiomadeira/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/caiomadeira/Desktop/pspsdk-samples/app/include/player.c -o CMakeFiles/PSPGAME.dir/include/player.c.s
 
+CMakeFiles/PSPGAME.dir/include/audio.c.obj: CMakeFiles/PSPGAME.dir/flags.make
+CMakeFiles/PSPGAME.dir/include/audio.c.obj: /home/caiomadeira/Desktop/pspsdk-samples/app/include/audio.c
+CMakeFiles/PSPGAME.dir/include/audio.c.obj: CMakeFiles/PSPGAME.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/PSPGAME.dir/include/audio.c.obj"
+	/home/caiomadeira/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/PSPGAME.dir/include/audio.c.obj -MF CMakeFiles/PSPGAME.dir/include/audio.c.obj.d -o CMakeFiles/PSPGAME.dir/include/audio.c.obj -c /home/caiomadeira/Desktop/pspsdk-samples/app/include/audio.c
+
+CMakeFiles/PSPGAME.dir/include/audio.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/PSPGAME.dir/include/audio.c.i"
+	/home/caiomadeira/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/caiomadeira/Desktop/pspsdk-samples/app/include/audio.c > CMakeFiles/PSPGAME.dir/include/audio.c.i
+
+CMakeFiles/PSPGAME.dir/include/audio.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/PSPGAME.dir/include/audio.c.s"
+	/home/caiomadeira/pspdev/bin/psp-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/caiomadeira/Desktop/pspsdk-samples/app/include/audio.c -o CMakeFiles/PSPGAME.dir/include/audio.c.s
+
 # Object files for target PSPGAME
 PSPGAME_OBJECTS = \
 "CMakeFiles/PSPGAME.dir/main.c.obj" \
-"CMakeFiles/PSPGAME.dir/include/player.c.obj"
+"CMakeFiles/PSPGAME.dir/include/player.c.obj" \
+"CMakeFiles/PSPGAME.dir/include/audio.c.obj"
 
 # External object files for target PSPGAME
 PSPGAME_EXTERNAL_OBJECTS =
 
 PSPGAME: CMakeFiles/PSPGAME.dir/main.c.obj
 PSPGAME: CMakeFiles/PSPGAME.dir/include/player.c.obj
+PSPGAME: CMakeFiles/PSPGAME.dir/include/audio.c.obj
 PSPGAME: CMakeFiles/PSPGAME.dir/build.make
 PSPGAME: CMakeFiles/PSPGAME.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable PSPGAME"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/caiomadeira/Desktop/pspsdk-samples/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable PSPGAME"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PSPGAME.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -E cmake_echo_color --cyan Not\ stripping\ binary\ for\ target\ PSPGAME,\ build\ type\ is\ .
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Calling psp-fixup-imports for target PSPGAME"
