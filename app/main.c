@@ -9,11 +9,10 @@
 #define SDL_MAIN_USE_CALLBACKS
 #include <SDL3/SDL_main.h>
 #include <SDL3_ttf/SDL_ttf.h>
+#include<pspaudio.h>
+#include<pspaudiolib.h>
 
 #define INIT_OPEN_GL_WINDOW false
-
-
-extern void compat_set_audio_device_id(SDL_AudioDeviceID id);
 
 typedef struct app {
 	SDL_Window *window;
@@ -24,6 +23,7 @@ typedef struct app {
     SDL_Texture *background_texture;
     SDL_Renderer *renderer;
     TTF_Font *font;
+    SceCtrlData prev_pad;
 } app_t;
 
 // Pega o caminho do executável e muda o diretório de trabalho
@@ -52,24 +52,23 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv)
 	app_t *a;
     get_binary_path(argc, argv);
 
-	if (!SDL_Init(SDL_INIT_VIDEO))
-    {
-        pspDebugScreenInit();
-        pspDebugScreenClear();
-        pspDebugScreenSetXY(20, 7);
-        pspDebugScreenPrintf(SDL_GetError());
-        SDL_Delay(4000);
+    // --- PASSO 1 (CRÍTICO): Inicializar o SDL SEM o subsistema de áudio ---
+    // A pspaudiolib irá controlar o hardware de som diretamente.
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "SDL_Init(VIDEO) falhou: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
 
-    if (init_audio() != 0) {
-        pspDebugScreenInit();
-        pspDebugScreenClear();
-        pspDebugScreenSetXY(20, 7);
-        pspDebugScreenPrintf(SDL_GetError());
-        SDL_Delay(4000);
+    // --- PASSO 2: Chamar a nossa função de inicialização de áudio nativo ---
+    if (init_native_audio("test.wav") != 0) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "native_audio_init_and_load falhou.");
+        // Pode adicionar aqui um pspDebugScreenPrintf para ver o erro no PSP.
         return SDL_APP_FAILURE;
     }
+    
+    // if (init_audio() != 0) {
+    //     return SDL_APP_FAILURE;
+    // }
     
     if (TTF_Init() == -1)
     {
@@ -87,6 +86,8 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv)
         SDL_Delay(4000);
         return SDL_APP_FAILURE;
     }
+
+    SDL_zero(a->prev_pad);
 
     a->window = SDL_CreateWindow(WINDOW_NAME, WINDOW_WIDTH, WINDOW_HEIGHT, INIT_OPEN_GL_WINDOW); // janela de renderizacao c open_gl
     if (a->window == NULL)
@@ -171,6 +172,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv)
 SDL_AppResult SDL_AppIterate(void *appstate)
 {
     app_t *a = (app_t *)appstate;
+    a->prev_pad = a->pad;
 
     // --- LOGICA DE CONTROLES
     readButtonState(&a->pad, 1);
@@ -181,6 +183,12 @@ SDL_AppResult SDL_AppIterate(void *appstate)
     a->player->x += analog_x * a->player->speed;    // Atualiza a posição do jogador
     a->player->y -= analog_y * a->player->speed;
     if (a->pad.Buttons & PSP_CTRL_START)  return SDL_APP_SUCCESS;    // Se o botão START for pressionado, fecha o aplicativo
+    
+    
+    if ((a->pad.Buttons & PSP_CTRL_CROSS) && !(a->prev_pad.Buttons & PSP_CTRL_CROSS)) {
+        trigger_native_sound();
+    }
+
     // ----------------------------------------------------
     // --- LÓGICA DE RENDERIZAÇÃO ---
 
@@ -244,6 +252,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
         return SDL_APP_SUCCESS;
     }
 
+
     return SDL_APP_CONTINUE;
 }
 
@@ -252,7 +261,8 @@ void SDL_AppQuit(void *appstate, SDL_AppResult result)
 	app_t *a = (app_t *)appstate;
 	SDL_DestroyWindow(a->window);
 	//SDL_GL_DestroyContext(a->context);
-    cleanup_audio();
+    //cleanup_audio();
+    cleanup_native_audio();
 	SDL_free(a);
 	SDL_Quit();
 }

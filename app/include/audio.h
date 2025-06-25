@@ -1,14 +1,13 @@
-#ifndef AUDIO_H
-#define AUDIO_H
+#ifndef NATIVE_AUDIO_H
+#define NATIVE_AUDIO_H
 
-// Inicializa o sistema de áudio e carrega todos os sons.
-// Retorna 0 em caso de sucesso, -1 em caso de erro.
-int  init_audio(void);
+// Inicializa o sistema de áudio e carrega o nosso ficheiro de som.
+int  init_native_audio(const char *filename);
 
-// Toca o nosso efeito sonoro carregado.
-void play_laser_sound(void);
+// "Arma" o sistema para tocar o som na próxima vez que o hardware pedir.
+void trigger_native_sound(void);
 
-// Liberta todos os recursos de áudio.
-void cleanup_audio(void);
+// Liberta todos os recursos de áudio ao sair.
+void cleanup_native_audio(void);
 
-#endif // AUDIO_H
+#endif

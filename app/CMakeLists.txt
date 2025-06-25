@@ -33,6 +33,9 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     SDL3_image
     SDL3_ttf
 
+    pspaudio
+    pspaudiolib
+
     # dependencias do SDL_mixer
     vorbis # aqui é dependencia vorbis
     ogg # aqui é arquivos .ogg
