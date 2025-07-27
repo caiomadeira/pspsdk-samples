@@ -1,0 +1,103 @@
+#include "src/common.h"
+
+// Informações padrão do módulo do PSP
+PSP_MODULE_INFO("test3d", 0, 1, 0);
+PSP_MAIN_THREAD_ATTR(THREAD_ATTR_USER | THREAD_ATTR_VFPU);
+
+
+// Função principal do nosso aplicativo
+int main() {
+    // Configuração padrão para qualquer homebrew do PSP
+    setup_callbacks();
+    
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, APP_NAME);
+
+    // Carregar o modelo do jogador
+    // É importante que o modelo esteja virado para a direção "positiva Z" no seu software de modelagem
+    Model playerModel = LoadModel(PLAYER_MODEL); 
+    
+    // Posição inicial do jogador no mundo
+    Vector3 playerPosition = { 0.0f, 1.0f, 0.0f };
+    // Rotação inicial do jogador (em graus)
+    float playerRotation = 0.0f;
+
+    // Configurar a câmera 3D
+    Camera3D camera = { 0 };
+    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f }; // Vetor "para cima"
+    camera.fovy = 45.0f;                       // Campo de visão
+    camera.projection = CAMERA_PERSPECTIVE;    // Projeção em perspectiva
+
+    // Constantes para o comportamento da câmera e do jogador
+    const float PLAYER_MOVE_SPEED = 0.05f;
+    const float PLAYER_ROTATION_SPEED = 2.0f;
+    const float CAMERA_DISTANCE_BEHIND = 5.0f; // Distância da câmera atrás do jogador
+    const float CAMERA_HEIGHT_ABOVE = 3.0f;    // Altura da câmera acima do jogador
+
+    // Habilita o controle analógico
+    sceCtrlSetSamplingCycle(0);
+    sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
+    SceCtrlData pad;
+
+    SetTargetFPS(60);
+
+    // Loop principal do aplicativo
+    while (running) {
+        // --- Lógica de Atualização ---
+        
+        // 1. Ler os controles do PSP
+        sceCtrlReadBufferPositive(&pad, 1);
+
+        // 2. Atualizar a rotação do jogador com os gatilhos L e R
+        if (pad.Buttons & PSP_CTRL_LTRIGGER) playerRotation -= PLAYER_ROTATION_SPEED;
+        if (pad.Buttons & PSP_CTRL_RTRIGGER) playerRotation += PLAYER_ROTATION_SPEED;
+        
+        // 3. Mover o jogador com o analógico
+        // O analógico do PSP vai de 0 a 255, com 128 sendo o centro.
+        // Movimento para frente/trás
+        if (pad.Ly < 100) { // Analógico para cima
+            // Usa trigonometria para mover na direção que o jogador está olhando
+            playerPosition.x += sinf(playerRotation * DEG2RAD) * PLAYER_MOVE_SPEED;
+            playerPosition.z += cosf(playerRotation * DEG2RAD) * PLAYER_MOVE_SPEED;
+        }
+        if (pad.Ly > 150) { // Analógico para baixo
+            playerPosition.x -= sinf(playerRotation * DEG2RAD) * PLAYER_MOVE_SPEED;
+            playerPosition.z -= cosf(playerRotation * DEG2RAD) * PLAYER_MOVE_SPEED;
+        }
+        
+        // 4. Atualizar a posição e o alvo da câmera
+        // O alvo da câmera é sempre o jogador
+        camera.target = (Vector3){ playerPosition.x, playerPosition.y + 1.5f, playerPosition.z };
+
+        // A posição da câmera é calculada para ficar atrás do jogador,
+        // baseada na sua rotação atual.
+        camera.position.x = playerPosition.x - (sinf(playerRotation * DEG2RAD) * CAMERA_DISTANCE_BEHIND);
+        camera.position.z = playerPosition.z - (cosf(playerRotation * DEG2RAD) * CAMERA_DISTANCE_BEHIND);
+        camera.position.y = playerPosition.y + CAMERA_HEIGHT_ABOVE;
+
+
+        // --- Seção de Desenho ---
+        BeginDrawing();
+            ClearBackground(SKYBLUE);
+
+            BeginMode3D(camera);
+                // Desenha o jogador na sua posição e rotação atuais
+                DrawModelEx(playerModel, playerPosition, {0.0f, 1.0f, 0.0f}, playerRotation, {1.0f, 1.0f, 1.0f}, WHITE);
+
+                // Desenha um chão para dar referência
+                DrawGrid(20, 1.0f);
+            EndMode3D();
+
+            // Desenha texto de ajuda na tela
+            DrawText("Analogico: Mover | L/R: Girar", 10, 10, 20, BLACK);
+            DrawFPS(SCREEN_WIDTH - 100, 10);
+
+        EndDrawing();
+    }
+
+    // Limpeza
+    UnloadModel(playerModel);
+    CloseWindow();
+
+    sceKernelExitGame();
+    return 0;
+}
