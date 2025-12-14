@@ -1,5 +1,5 @@
 TARGET = test3d
-OBJS = main.o src/common.o
+OBJS = main.o src/common.o src/camera.o src/player.o
 
 INCDIR = 
 CFLAGS = -O0 -Wall -g

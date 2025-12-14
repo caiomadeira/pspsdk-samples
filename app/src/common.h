@@ -13,9 +13,16 @@
 #define SCREEN_HEIGHT 272
 
 #define APP_NAME "Tests3d"
-
 #define PLAYER_MODEL "assets/blockbench-car.glb"
 
+// game states
+typedef enum GameScreen {
+    ENTRY = 0,
+    TITLE,
+    GAMEPLAY
+} GameScreen;
+
+// camera
 static volatile int running = 1;
 
 int exit_callback(int arg1, int arg2, void* common);
