@@ -12,9 +12,9 @@
 #define SCREEN_WIDTH 480
 #define SCREEN_HEIGHT 272
 
-#define APP_NAME "Test3d"
+#define APP_NAME "Tests3d"
 
-#define PLAYER_MODEL "assets/greenman.glb"
+#define PLAYER_MODEL "assets/blockbench-car.glb"
 
 static volatile int running = 1;
 

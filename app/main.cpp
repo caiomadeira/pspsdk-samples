@@ -9,45 +9,45 @@ typedef enum GameScreen {
     GAMEPLAY
 } GameScreen;
 
-// Player configs
 Vector3 playerPosition = { 0.0f, 1.0f, 0.0f };
 float playerRotation = 0.0f;
 
-// Constantes para o comportamento da câmera e do jogador
 const float PLAYER_MOVE_SPEED = 0.05f;
 const float PLAYER_ROTATION_SPEED = 2.0f;
-const float CAMERA_DISTANCE_BEHIND = 5.0f; // Distância da câmera atrás do jogador
-const float CAMERA_HEIGHT_ABOVE = 3.0f;    // Altura da câmera acima do jogador
+const float CAMERA_DISTANCE_BEHIND = 5.0f; 
+const float CAMERA_HEIGHT_ABOVE = 3.0f;
 
-
-// Função principal do nosso aplicativo
 int main() {
-    // Configuração padrão para qualquer homebrew do PSP
     setup_callbacks();
     
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, APP_NAME);
 
-    GameScreen currentScreen = LOGO;
+    GameScreen currentScreen = ENTRY;
 
     int fpsCount = 0;
-
+    const int screenWidth = SCREEN_WIDTH;
+    const int screenHeight = SCREEN_HEIGHT;
+    const char menuTitle[10] = "Title 01";
     Model playerModel = LoadModel(PLAYER_MODEL);  
     
-    Camera3D camera = { 0 };
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f }; // Vetor "para cima"
-    camera.fovy = 45.0f;                       // Campo de visão
-    camera.projection = CAMERA_PERSPECTIVE;    // Projeção em perspectiva
+    Font menuFont = LoadFont("assets/anonymous_pro_bold.ttf");
+    Vector2 fontPosition1 = { screenWidth/2.0f - MeasureTextEx(menuFont, menuTitle, (float)menuFont.baseSize, -3).x/2,
+                              screenHeight/2.0f - menuFont.baseSize/2.0f - 80.0f };
 
-    // Habilita o controle analógico
+    
+
+    Camera3D camera = { 0 };
+    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f }; 
+    camera.fovy = 45.0f;                       
+    camera.projection = CAMERA_PERSPECTIVE;  
+
     sceCtrlSetSamplingCycle(0);
     sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
     SceCtrlData pad;
 
     SetTargetFPS(60);
 
-    // Loop principal do aplicativo
     while (running) {
-        // --- Lógica de Atualização ---
         sceCtrlReadBufferPositive(&pad, 1);
 
 
@@ -71,11 +71,11 @@ int main() {
                 if (pad.Buttons & PSP_CTRL_LTRIGGER) playerRotation -= PLAYER_ROTATION_SPEED;
                 if (pad.Buttons & PSP_CTRL_RTRIGGER) playerRotation += PLAYER_ROTATION_SPEED;
                 
-                if (pad.Ly < 100) { // Analógico para cima
+                if (pad.Ly < 100) { 
                     playerPosition.x += sinf(playerRotation * DEG2RAD) * PLAYER_MOVE_SPEED;
                     playerPosition.z += cosf(playerRotation * DEG2RAD) * PLAYER_MOVE_SPEED;
                 }
-                if (pad.Ly > 150) { // Analógico para baixo
+                if (pad.Ly > 150) { 
                     playerPosition.x -= sinf(playerRotation * DEG2RAD) * PLAYER_MOVE_SPEED;
                     playerPosition.z -= cosf(playerRotation * DEG2RAD) * PLAYER_MOVE_SPEED;
                 }
@@ -95,29 +95,23 @@ int main() {
             {
                 case ENTRY:
                 {
-                    // TODO: Draw LOGO screen here!
-                    DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
-                    DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
+                    DrawText("By Caio Madeira", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 40, LIGHTGRAY);
                 } break;
                 case TITLE:
                 {
-                    // TODO: Draw TITLE screen here!
                     DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, GREEN);
-                    DrawText("TITLE SCREEN", 20, 20, 40, DARKGREEN);
-                    DrawText("PRESS X to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
-
+                    DrawTextEx(menuFont, menuTitle, fontPosition1, (float)menuFont.baseSize, -3, WHITE);
+                    Vector2 posicao = {190, 200};
+                    DrawTextEx(menuFont, "PRESS X to JUMP", posicao, 20, 2, WHITE);
                 } break;
                 case GAMEPLAY:
                 {
                     BeginMode3D(camera);
-                        // Desenha o jogador na sua posição e rotação atuais
                         DrawModelEx(playerModel, playerPosition, {0.0f, 1.0f, 0.0f}, playerRotation, {1.0f, 1.0f, 1.0f}, WHITE);
 
-                        // Desenha um chão para dar referência
                         DrawGrid(20, 1.0f);
                     EndMode3D();
 
-                    // Desenha texto de ajuda na tela
                     DrawText("Analogico: Mover | L/R: Girar", 10, 10, 20, BLACK);
                     DrawFPS(SCREEN_WIDTH - 100, 10);
 
@@ -127,7 +121,7 @@ int main() {
         EndDrawing();
     }
 
-    // Limpeza
+    UnloadFont(menuFont);
     UnloadModel(playerModel);
     CloseWindow();
 
